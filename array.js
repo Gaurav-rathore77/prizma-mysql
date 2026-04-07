@@ -41,7 +41,32 @@ function findDuplicate(nums){
         nums[index] = -nums[index]
     }
 }
+
+function merzeArray(nums1 , nums2){
+   result = []
+   let i = 0 ,j = 0;
+   while(i <nums1.length &&j < nums2.length ){
+
+    if(nums1[i]<nums2[2]){
+        result.push(nums1[i])
+        i++;
+    }
+    result.push(nums2[j])
+    j++;
+   }
+   while(i < nums1[i]){
+    result.push(nums1[i])
+    i++
+   }
+
+    while(j < nums1[j]){
+    result.push(nums1[j])
+      j++
+   }
+   return result
+}
     
+
 
 
 // console.log(twoSum([2,7,11,15],9))
