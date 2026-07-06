@@ -77,7 +77,55 @@ function twoSum(arr,target){
    
     
 }
-console.log(removeDuplicates(kok));
+function mergeSort (arr){
+    if(arr.length<=1) return arr;
+     const mid = Math.floor(arr.length / 2);
+const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+       
+    return merge(left,right)
+}
+function merge(left,right){
+    result = []
+    let i = 0
+    let j = 0
+     while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            result.push(left[i]);
+            i++;
+        } else {
+            result.push(right[j]);
+            j++;
+        }
+    }
+    
+    return result
+        .concat(left.slice(i))
+        .concat(right.slice(j));
+}
+
+function twoSum(arr, target) {
+    let freq = {};
+
+    for (let i = 0; i < arr.length; i++) {
+        let complement = target - arr[i];
+
+        if (freq[complement] !== undefined) {
+            return [freq[complement], i];
+        }
+
+        freq[arr[i]] = i;
+    }
+
+    return [];
+}
+
+function bestTimeForStock(arr){
+    
+}
+console.log(twoSum([2, 7, 11, 15], 9))
+// console.log(mergeSort([5, 2, 4, 1]));
+// console.log(removeDuplicates(kok));
 
 // console.log(removeDuplicates([1, 1, 2, 2, 3, 4, 4, 5]));
 // console.log(removeDuplicates(arr))
