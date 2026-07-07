@@ -148,12 +148,37 @@ function firstVowel(str){
     // }
     return -1
 }
-console.log(countVowel("hjihikhdia"))
+
+function longestSubWithoutVowel(str) {
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+
+    let longest = "";
+    let current = "";
+
+    for (const ch of str.toLowerCase()) {
+        if (vowels.has(ch)) {
+            if (current.length > longest.length) {
+                longest = current;
+            }
+            current = "";
+        } else {
+            current += ch;
+        }
+    }
+
+    // Check the last substring
+    if (current.length > longest.length) {
+        longest = current;
+    }
+
+    return longest;
+}
+
+console.log(longestSubWithoutVowel("hjihikhdia"));
 // console.log(bestTimeForStock([7, 1, 5, 3, 6, 4])); // 5
 // console.log(twoSum([2, 7, 11, 15], 9))
 // console.log(mergeSort([5, 2, 4, 1]));
 // console.log(removeDuplicates(kok));
-
+// console.log(reverseArray(arr))
 // console.log(removeDuplicates([1, 1, 2, 2, 3, 4, 4, 5]));
 // console.log(removeDuplicates(arr))
-// console.log(reverseArray(arr))
