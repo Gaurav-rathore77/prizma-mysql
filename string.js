@@ -121,9 +121,36 @@ function twoSum(arr, target) {
 }
 
 function bestTimeForStock(arr){
-    
+    let minPrise = arr[0]
+    let  maxProfit = 0
+    for(let i = 0; i<arr.length ; i++){
+      let profit = arr[i]-minPrise
+      maxProfit = Math.max(maxProfit,profit)
+      minPrise = Math.min(minPrise, arr[i]);
+    }
+    return maxProfit
 }
-console.log(twoSum([2, 7, 11, 15], 9))
+function firstVowel(str){
+    const vowel = new Set(['a','i','o','u','e'])
+    // count = 0
+    // let result = ""
+
+    for(let i = 0 ; i<str.length;i++){
+        if(vowel.has(str[i].toLowerCase())){
+            return i
+        }
+    }
+    // for(const ch of str){
+    //     if(!vowel.has(ch)){
+    //      result+=ch
+       
+    //     }
+    // }
+    return -1
+}
+console.log(countVowel("hjihikhdia"))
+// console.log(bestTimeForStock([7, 1, 5, 3, 6, 4])); // 5
+// console.log(twoSum([2, 7, 11, 15], 9))
 // console.log(mergeSort([5, 2, 4, 1]));
 // console.log(removeDuplicates(kok));
 
