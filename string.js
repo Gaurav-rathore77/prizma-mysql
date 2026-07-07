@@ -173,8 +173,22 @@ function longestSubWithoutVowel(str) {
 
     return longest;
 }
+function reverseString(str) {
+    let string = "";
 
-console.log(longestSubWithoutVowel("hjihikhdia"));
+    for (let i = str.length - 1; i >= 0; i--) {
+        string += str[i];
+    }
+
+    return string;
+}
+
+
+
+// console.log(reverseString("hello")); // "olleh"
+
+// console.log(reverseString("ajshdfjiashgfj"))
+// console.log(longestSubWithoutVowel("hjihikhdia"));
 // console.log(bestTimeForStock([7, 1, 5, 3, 6, 4])); // 5
 // console.log(twoSum([2, 7, 11, 15], 9))
 // console.log(mergeSort([5, 2, 4, 1]));
