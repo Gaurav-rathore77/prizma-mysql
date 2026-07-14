@@ -17,8 +17,7 @@ function swip(arr , start ,end){
 
 }
 
-// function removeDup(arr){
-//     const result = []
+     const result = []
 
 //     for(const num of arr){
 //         if(!result.includes(num)){
@@ -183,10 +182,92 @@ function reverseString(str) {
     return string;
 }
 
+function palindrome(str) {
+    let first = 0;
+    let second = str.length - 1;
+
+    while (first < second) {
+        if (str[first] !== str[second]) {
+            return "No";
+        }
+        first++;
+        second--;
+    }
+
+    return "Yes";
+}
+
+function productExceptSelf(arr){
+    let prod = arr[0]
+   for(const num of arr){
+      return prod*=num
+   }
+   return prod
+}
+// linkedList
+function reverseList(head){
+    const prev = null
+    const current = head
+    while(current!==null){
+        const next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    }
+    return prev
+}
+
+// linkedList
+class Node{
+     constructor(val){
+        this.val = val
+        this.next = null
+    }
+}
+function inserFirst(head,val){
+   
+    
+    const node = new Node(val)
+    node.next = head
+    return node
+    
+}
+function insertLast(head,val){
+     const node = new Node(val)
+     const current = head 
+     if(head==nul){
+         return node
+     }
+     while(current!==null){
+         current = current.next
+     }
+     current.next = node
+     
+     return head
+  
+    
+}
+function findMiddle(head) {
+    let slow = head;
+    let fast = head;
+
+    while (fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    return slow;
+}
+
+
+console.log(productExceptSelf([2,4,5,6,7]))
+// console.log(palindrome("madam")); // Yes
+// console.log(palindrome("hello")); // No
+// console.log(palindrome("racecar")); // Yes
 
 
 // console.log(reverseString("hello")); // "olleh"
-
+// console.log(pallindrome("jiluytulij"))
 // console.log(reverseString("ajshdfjiashgfj"))
 // console.log(longestSubWithoutVowel("hjihikhdia"));
 // console.log(bestTimeForStock([7, 1, 5, 3, 6, 4])); // 5
