@@ -258,7 +258,21 @@ function findMiddle(head) {
 
     return slow;
 }
+function findCycle(head) {
+    let slow = head;
+    let fast = head;
 
+    while (fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if (slow === fast) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 console.log(productExceptSelf([2,4,5,6,7]))
 // console.log(palindrome("madam")); // Yes
