@@ -26,6 +26,23 @@ function containsDuplicate (arr){
     return false
 }
 
+function validAnagram (str1,str2){
+    if(str1.length ==0 || str2.length ==0 || str1.length !== str2.length){
+        return false
+    }
+    const map = new Map()
+
+    for(let ch of str1){
+        map.set(ch,map.get(ch||0)+1)
+    }
+    for(let ch of str2){
+        if(!map.has(ch) || map.get(ch)===0){
+            return false
+        }
+        map.set(ch,map.get(ch-1))
+    }
+    return true
+}
 const arr = [2, 7, 11, 15];
 const target = 9;
 
