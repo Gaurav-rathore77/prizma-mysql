@@ -43,6 +43,19 @@ function validAnagram (str1,str2){
     }
     return true
 }
+function firstUniqChar (str){
+    const map = new Map()
+    for(let ch of str){
+        map.set(ch,map.get(ch||0)+1)
+    }
+    for(let ch of str){
+        if(map.get(ch)===1){
+            return ch
+        }
+    }
+    return false
+    
+}
 const arr = [2, 7, 11, 15];
 const target = 9;
 
