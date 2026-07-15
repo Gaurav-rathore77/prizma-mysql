@@ -74,7 +74,29 @@ function countPairs(s) {
 
     return count;
 }
+function isValid(s) {
+    const stack = [];
 
+    const map = {
+        ")": "(",
+        "]": "[",
+        "}": "{"
+    };
+
+    for (let ch of s) {
+        // Opening bracket
+        if (ch === "(" || ch === "[" || ch === "{") {
+            stack.push(ch);
+        } else {
+            // Stack empty ya top match nahi hua
+            if (stack.length === 0 || stack.pop() !== map[ch]) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
+}
 // console.log(countPairs(")(()")); // 1
 function interSectionOfTwoAr(arr1, arr2) {
     const map = new Map();
