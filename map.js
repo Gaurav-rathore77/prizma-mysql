@@ -56,8 +56,49 @@ function firstUniqChar (str){
     return false
     
 }
-const arr = [2, 7, 11, 15];
-const target = 9;
 
-console.log(twoSum(arr, target)); // [0, 1]
+function interSectionOfTwoAr(arr1, arr2) {
+    const map = new Map();
+    const nums = [];
+
+    // Count elements of arr1
+    for (let a of arr1) {
+        map.set(a, (map.get(a) || 0) + 1);
+    }
+
+    // Check elements of arr2
+    for (let a of arr2) {
+        if (map.has(a) && map.get(a) > 0) {
+            nums.push(a);
+            map.set(a, map.get(a) - 1);
+        }
+    }
+
+    return nums;
+}
+
+function interSectionOfTwoAr2(arr1, arr2) {
+    const set = new Set(arr1)
+    const result = new Set()
+
+    // Count elements of arr1
+    for (let a of arr2) {
+        if(set.has(a)){
+            result.add(a)
+        }
+    }
+
+    // Check elements of arr2
+    
+
+    return [...result]
+}
+
+
+// console.log(interSectionOfTwoAr([1, 2, 2, 1], [2, 2]));
+// Output: [2, 2]
+// const arr = [2, 7, 11, 15];
+// const target = 9;
+
+// console.log(twoSum(arr, target)); // [0, 1]
 // console.log(twoSum(arr))
