@@ -57,6 +57,25 @@ function firstUniqChar (str){
     
 }
 
+function countPairs(s) {
+    const stack = [];
+    let count = 0;
+
+    for (const ch of s) {
+        if (ch === "(") {
+            stack.push(ch);
+        } else if (ch === ")") {
+            if (stack.length > 0) {
+                stack.pop();
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+// console.log(countPairs(")(()")); // 1
 function interSectionOfTwoAr(arr1, arr2) {
     const map = new Map();
     const nums = [];
