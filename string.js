@@ -273,6 +273,19 @@ function findCycle(head) {
 
     return false;
 }
+function removeDuplicateFromSortLink(head) {
+    let current = head;
+
+    while (current && current.next) {
+        if (current.val === current.next.val) {
+            current.next = current.next.next;
+        } else {
+            current = current.next;
+        }
+    }
+
+    return head;
+}
 
 console.log(productExceptSelf([2,4,5,6,7]))
 // console.log(palindrome("madam")); // Yes
