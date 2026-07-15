@@ -15,6 +15,16 @@ function twoSum(arr, target) {
 
     return [];
 }
+function containsDuplicate (arr){
+    const map = new Map()
+    for(let i=0; i<arr.length;i++){
+        if(map.has(arr[i])){
+            return true
+        }
+        return map.set(arr[i],i)
+    }
+    return false
+}
 
 const arr = [2, 7, 11, 15];
 const target = 9;
