@@ -35,6 +35,20 @@ function maxSubAr2(arr) {
 
     return maxS;
 }
+function maxProfit(prices) {
+    let minPrice = Infinity;
+    let maxProfit = 0;
+
+    for (let price of prices) {
+        minPrice = Math.min(minPrice, price);
+
+        let profit = price - minPrice;
+
+        maxProfit = Math.max(maxProfit, profit);
+    }
+
+    return maxProfit;
+}
 function productExceptSelf(nums) {
     let n = nums.length;
     let result = new Array(n).fill(1);
