@@ -9,6 +9,33 @@ function twoSum(nums , target){
 
 }
 
+function maxSubAr(arr) {
+    let currentS = arr[0];
+    let maxS = arr[0];
+
+    for (let i = 1; i < arr.length; i++) {
+        currentS = Math.max(arr[i], currentS + arr[i]);
+        maxS = Math.max(maxS, currentS);
+    }
+
+    return maxS;
+}
+
+function maxSubAr2(arr) {
+    let currentS = 0;
+    let maxS = arr[0];
+
+    for (let num of arr) {
+        currentS+=num
+        maxS = Math.max(maxS, currentS);
+    }
+    if(currentS<0){
+        currentS = 0
+    }
+
+    return maxS;
+}
+
 function maxSum(nums){
     let current  = nums[0]
     let max = nums[0]
