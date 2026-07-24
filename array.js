@@ -298,6 +298,27 @@ function maxSlidingWindow(nums, k) {
     return result;
 }
 
+function maxSlidingWindow(nums, k) {
+
+    let result = [];
+
+    for(let i=0;i<=nums.length-k;i++){
+
+        let max = nums[i];
+
+        for(let j=i;j<i+k;j++){
+
+            max = Math.max(max, nums[j]);
+
+        }
+
+        result.push(max);
+
+    }
+
+    return result;
+
+}
 
 // console.log(twoSum([2,7,11,15],9))
 // console.log(maxSum([1,2,3,-1,5]))
