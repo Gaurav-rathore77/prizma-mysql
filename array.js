@@ -266,6 +266,38 @@ function spiralOrder(matrix) {
     return result;
 }
 
+function maxSlidingWindow(nums, k) {
+
+    let deque = [];
+    let result = [];
+
+    for (let i = 0; i < nums.length; i++) {
+
+        // Remove indices outside current window
+        if (deque.length && deque[0] <= i - k) {
+            deque.shift();
+        }
+
+        // Remove smaller elements from the back
+        while (
+            deque.length &&
+            nums[deque[deque.length - 1]] < nums[i]
+        ) {
+            deque.pop();
+        }
+
+        // Add current index
+        deque.push(i);
+
+        // Window complete
+        if (i >= k - 1) {
+            result.push(nums[deque[0]]);
+        }
+    }
+
+    return result;
+}
+
 
 // console.log(twoSum([2,7,11,15],9))
 // console.log(maxSum([1,2,3,-1,5]))
