@@ -12,6 +12,21 @@ function  duplicateChar(str){
     return null
 
 }
+let sum = 0;
+
+// first window
+for (let i = 0; i < k; i++) {
+    sum += arr[i];
+}
+
+let max = sum;
+
+for (let i = k; i < arr.length; i++) {
+    sum += arr[i];
+    sum -= arr[i - k];
+
+    max = Math.max(max, sum);
+}
 
 
 function twoSum(arr, target){
