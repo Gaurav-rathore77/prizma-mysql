@@ -67,7 +67,34 @@ function maxSumSubarray(arr, k) {
     return maxSum;
 }
 
+
+function lengthOfLongestSubstring(s) {
+
+    let set = new Set();
+
+    let left = 0;
+
+    let maxLength = 0;
+
+    for (let right = 0; right < s.length; right++) {
+
+        while (set.has(s[right])) {
+            set.delete(s[left]);
+            left++;
+        }
+
+        set.add(s[right]);
+
+        maxLength = Math.max(maxLength, right - left + 1);
+    }
+
+    return maxLength;
+}
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
 console.log(maxSumSubarray([2,1,5,1,3,2],3)); // 9
+
+
 
 console.log(maxSum([2,1,5,1,3,2],3));
 
