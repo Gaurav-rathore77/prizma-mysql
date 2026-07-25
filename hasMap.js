@@ -28,6 +28,48 @@ for (let i = k; i < arr.length; i++) {
     max = Math.max(max, sum);
 }
 
+function maxSum(arr, k) {
+  let max = -Infinity;
+
+  for (let i = 0; i <= arr.length - k; i++) {
+    let sum = 0;
+
+    for (let j = i; j < i + k; j++) {
+      sum += arr[j];
+    }
+
+    max = Math.max(max, sum);
+  }
+
+  return max;
+}
+
+function maxSumSubarray(arr, k) {
+
+    let windowSum = 0;
+
+    // First window
+    for (let i = 0; i < k; i++) {
+        windowSum += arr[i];
+    }
+
+    let maxSum = windowSum;
+
+    // Slide the window
+    for (let i = k; i < arr.length; i++) {
+
+        windowSum += arr[i];       // Add new element
+        windowSum -= arr[i - k];   // Remove old element
+
+        maxSum = Math.max(maxSum, windowSum);
+    }
+
+    return maxSum;
+}
+
+console.log(maxSumSubarray([2,1,5,1,3,2],3)); // 9
+
+console.log(maxSum([2,1,5,1,3,2],3));
 
 function twoSum(arr, target){
     const map  = new Map();
