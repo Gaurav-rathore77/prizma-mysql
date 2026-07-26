@@ -199,6 +199,38 @@ function numSubarraysWithSum(nums, goal) {
     return atMost(nums, goal) - atMost(nums, goal - 1);
 }
 
+function countDistinct(arr, k) {
+
+    let map = new Map();
+    let result = [];
+
+    // First window
+    for (let i = 0; i < k; i++) {
+        map.set(arr[i], (map.get(arr[i]) || 0) + 1);
+    }
+
+    result.push(map.size);
+
+    // Slide the window
+    for (let i = k; i < arr.length; i++) {
+
+        // Remove outgoing element
+        map.set(arr[i - k], map.get(arr[i - k]) - 1);
+
+        if (map.get(arr[i - k]) === 0) {
+            map.delete(arr[i - k]);
+        }
+
+        // Add incoming element
+        map.set(arr[i], (map.get(arr[i]) || 0) + 1);
+
+        result.push(map.size);
+    }
+
+    return result;
+}
+
+console.log(countDistinct([1,2,1,3,4,2,3],4));
 console.log(numSubarraysWithSum([1,0,1,0,1], 2));
 
 console.log(containsDuplicate([1,2,3,1]));
