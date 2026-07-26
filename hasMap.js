@@ -171,6 +171,35 @@ function containsDuplicate(nums){
 
     return false;
 }
+function atMost(nums, goal) {
+
+    if (goal < 0) return 0;
+
+    let left = 0;
+    let sum = 0;
+    let count = 0;
+
+    for (let right = 0; right < nums.length; right++) {
+
+        sum += nums[right];
+
+        while (sum > goal) {
+            sum -= nums[left];
+            left++;
+        }
+
+        count += right - left + 1;
+    }
+
+    return count;
+}
+
+function numSubarraysWithSum(nums, goal) {
+
+    return atMost(nums, goal) - atMost(nums, goal - 1);
+}
+
+console.log(numSubarraysWithSum([1,0,1,0,1], 2));
 
 console.log(containsDuplicate([1,2,3,1]));
 // console.log(duplicateChar("aabbcddee"));?
