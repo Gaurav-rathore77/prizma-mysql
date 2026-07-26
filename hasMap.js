@@ -229,7 +229,43 @@ function countDistinct(arr, k) {
 
     return result;
 }
+function firstNegative(arr, k) {
 
+    const queue = []; // stores indices of negative numbers
+    const result = [];
+
+    // Process first window
+    for (let i = 0; i < k; i++) {
+        if (arr[i] < 0) {
+            queue.push(i);
+        }
+    }
+
+    result.push(queue.length ? arr[queue[0]] : 0);
+
+    // Slide the window
+    for (let i = k; i < arr.length; i++) {
+
+        // Remove expired index
+        while (queue.length && queue[0] <= i - k) {
+            queue.shift();
+        }
+
+        // Add current negative index
+        if (arr[i] < 0) {
+            queue.push(i);
+        }
+
+        result.push(queue.length ? arr[queue[0]] : 0);
+    }
+
+    return result;
+}
+
+console.log(firstNegative(
+    [12,-1,-7,8,-15,30,16,28],
+    3
+));
 console.log(countDistinct([1,2,1,3,4,2,3],4));
 console.log(numSubarraysWithSum([1,0,1,0,1], 2));
 
