@@ -266,6 +266,30 @@ console.log(firstNegative(
     [12,-1,-7,8,-15,30,16,28],
     3
 ));
+function lengthOfLongestSubstring(s) {
+
+    let left = 0;
+    let maxLength = 0;
+
+    const set = new Set();
+
+    for (let right = 0; right < s.length; right++) {
+
+        while (set.has(s[right])) {
+
+            set.delete(s[left]);
+            left++;
+        }
+
+        set.add(s[right]);
+
+        maxLength = Math.max(maxLength, right - left + 1);
+    }
+
+    return maxLength;
+}
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
 console.log(countDistinct([1,2,1,3,4,2,3],4));
 console.log(numSubarraysWithSum([1,0,1,0,1], 2));
 
