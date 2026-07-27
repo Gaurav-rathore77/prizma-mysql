@@ -175,6 +175,41 @@ function interSectionOfTwoAr2(arr1, arr2) {
 }
 
 
+class ListNode {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+function mergeTwoLists(list1, list2) {
+
+    let dummy = new ListNode(-1);
+    let tail = dummy;
+
+    while (list1 && list2) {
+
+        if (list1.val <= list2.val) {
+            tail.next = list1;
+            list1 = list1.next;
+        } else {
+            tail.next = list2;
+            list2 = list2.next;
+        }
+
+        tail = tail.next;
+    }
+
+    // Attach remaining nodes
+    if (list1) {
+        tail.next = list1;
+    } else {
+        tail.next = list2;
+    }
+
+    return dummy.next;
+}
+
 // console.log(interSectionOfTwoAr([1, 2, 2, 1], [2, 2]));
 // Output: [2, 2]
 // const arr = [2, 7, 11, 15];
