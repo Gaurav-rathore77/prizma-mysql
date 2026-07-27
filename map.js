@@ -117,6 +117,45 @@ function interSectionOfTwoAr(arr1, arr2) {
 
     return nums;
 }
+class ListNode {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+function reverseKGroup(head, k) {
+
+    let count = 0;
+    let curr = head;
+
+    // Check if k nodes exist
+    while (curr && count < k) {
+        curr = curr.next;
+        count++;
+    }
+
+    if (count < k) return head;
+
+    // Reverse first k nodes
+    curr = head;
+    let prev = null;
+    let next = null;
+    count = 0;
+
+    while (curr && count < k) {
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+        count++;
+    }
+
+    // Connect remaining list
+    head.next = reverseKGroup(curr, k);
+
+    return prev;
+}
 
 function interSectionOfTwoAr2(arr1, arr2) {
     const set = new Set(arr1)
