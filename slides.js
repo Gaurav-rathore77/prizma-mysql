@@ -103,6 +103,37 @@ function characterReplacement(s, k) {
 
     return ans;
 }
+function longestSubstring(s) {
+    let map = new Map();
+
+    let left = 0;
+    let maxLength = 0;
+
+    for (let right = 0; right < s.length; right++) {
+
+        let ch = s[right];
+
+        // Agar character pehle se current window me hai
+        if (map.has(ch) && map.get(ch) >= left) {
+            left = map.get(ch) + 1;
+        }
+
+        // Character ka last index store karo
+        map.set(ch, right);
+
+        // Window length
+        let length = right - left + 1;
+
+        if (length > maxLength) {
+            maxLength = length;
+        }
+    }
+
+    return maxLength;
+}
+
+console.log(longestSubstring("abcabcbb"));
+// Output: 3v
 
 
 console.log(characterReplacement("AABABBA", 1));
