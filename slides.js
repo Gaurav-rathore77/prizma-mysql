@@ -131,7 +131,42 @@ function longestSubstring(s) {
 
     return maxLength;
 }
+function minSubArrayLen(target, arr) {
 
+    let left = 0;
+    let sum = 0;
+    let minLength = Infinity;
+
+    for (let right = 0; right < arr.length; right++) {
+
+        // Add current element
+        sum += arr[right];
+
+        // Shrink window
+        while (sum >= target) {
+
+            let length = right - left + 1;
+
+            if (length < minLength) {
+                minLength = length;
+            }
+
+            // Remove left element
+            sum -= arr[left];
+            left++;
+        }
+    }
+
+    if (minLength === Infinity) {
+        return 0;
+    }
+
+    return minLength;
+}
+
+
+console.log(minSubArrayLen(7, [2,3,1,2,4,3]));
+// Output: 2
 console.log(longestSubstring("abcabcbb"));
 // Output: 3v
 
