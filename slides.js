@@ -58,6 +58,55 @@ function countDistinct(arr, k) {
 
     return ans;
 }
+function characterReplacement(s, k) {
+    let map = new Map();
+
+    let left = 0;
+    let maxFreq = 0;
+    let ans = 0;
+
+    for (let right = 0; right < s.length; right++) {
+
+        let ch = s[right];
+
+        // Frequency increase
+        if (map.has(ch)) {
+            map.set(ch, map.get(ch) + 1);
+        } else {
+            map.set(ch, 1);
+        }
+
+        // Maximum frequency update
+        if (map.get(ch) > maxFreq) {
+            maxFreq = map.get(ch);
+        }
+
+        // Replacement required
+        let windowSize = right - left + 1;
+
+        if (windowSize - maxFreq > k) {
+
+            let leftChar = s[left];
+
+            map.set(leftChar, map.get(leftChar) - 1);
+
+            left++;
+        }
+
+        // Maximum window size
+        windowSize = right - left + 1;
+
+        if (windowSize > ans) {
+            ans = windowSize;
+        }
+    }
+
+    return ans;
+}
+
+
+console.log(characterReplacement("AABABBA", 1));
+// Output: 4v
 
 console.log(countDistinct([1,2,1,3,4,2,3],4));
 // Output: [3,4,4,3]
