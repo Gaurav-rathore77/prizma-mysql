@@ -87,3 +87,23 @@ function trap(height) {
 
     return water;
 }
+
+function zeroL(arr){
+    let j = 0;
+    for (let i = 0 ; i<arr.length; i++){
+        if(arr[i] !==0 ){
+            swap(arr,i,j)
+            j++
+        }
+        
+    }
+    return arr
+}
+function swap(arr,start,second){
+    let temp = arr[start]
+    arr[start] = arr[second]
+    arr[second] = temp
+    
+}
+
+console.log(zeroL([1,1,0,1,0,1,1]))
