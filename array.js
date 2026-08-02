@@ -108,20 +108,20 @@ function merzeArray(nums1 , nums2){
    let i = 0 ,j = 0;
    while(i <nums1.length &&j < nums2.length ){
 
-    if(nums1[i]<nums2[2]){
+    if(nums1[i]<nums2[j]){
         result.push(nums1[i])
         i++;
     }
     result.push(nums2[j])
     j++;
    }
-   while(i < nums1[i]){
+   while(i < nums1.length){
     result.push(nums1[i])
     i++
    }
 
-    while(j < nums1[j]){
-    result.push(nums1[j])
+    while(j < nums2.length){
+    result.push(nums2[j])
       j++
    }
    return result
@@ -299,26 +299,38 @@ function maxSlidingWindow(nums, k) {
 }
 
 function maxSlidingWindow(nums, k) {
+    let deque = new Array(nums.length);
+    let front = 0;
+    let rear = -1;
 
     let result = [];
 
-    for(let i=0;i<=nums.length-k;i++){
+    for (let right = 0; right < nums.length; right++) {
 
-        let max = nums[i];
-
-        for(let j=i;j<i+k;j++){
-
-            max = Math.max(max, nums[j]);
-
+        // Window se bahar wale indices remove karo
+        while (front <= rear && deque[front] < right - k + 1) {
+            front++;
         }
 
-        result.push(max);
+        // Current element se chhote elements remove karo
+        while (front <= rear && nums[deque[rear]] <= nums[right]) {
+            rear--;
+        }
 
+        // Current index add karo
+        deque[++rear] = right;
+
+        // Window complete hone par answer store karo
+        if (right >= k - 1) {
+            result.push(nums[deque[front]]);
+        }
     }
 
     return result;
-
 }
+
+console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
+// [3,3,5,5,6,7]
 
 // console.log(twoSum([2,7,11,15],9))
 // console.log(maxSum([1,2,3,-1,5]))
