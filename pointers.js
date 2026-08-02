@@ -131,4 +131,34 @@ function swap(arr,start,second){
     
 }
 
+function closestPair(arr1, arr2, target) {
+    let i = 0;
+    let j = arr2.length - 1;
+
+    let minDiff = Infinity;
+    let ans = [];
+
+    while (i < arr1.length && j >= 0) {
+        let sum = arr1[i] + arr2[j];
+        let diff = Math.abs(target - sum);
+
+        if (diff < minDiff) {
+            minDiff = diff;
+            ans = [arr1[i], arr2[j]];
+        }
+
+        if (sum > target) {
+            j--;
+        } else {
+            i++;
+        }
+    }
+
+    return ans;
+}
+
+console.log(
+    closestPair([1,4,5,7], [10,20,30,40], 32)
+);
+
 console.log(zeroL([1,1,0,1,0,1,1]))
