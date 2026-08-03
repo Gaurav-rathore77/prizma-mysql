@@ -316,7 +316,7 @@ function maxSlidingWindow(nums, k) {
         while (front <= rear && nums[deque[rear]] <= nums[right]) {
             rear--;
         }
-
+        
         // Current index add karo
         deque[++rear] = right;
 

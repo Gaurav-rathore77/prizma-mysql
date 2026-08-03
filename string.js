@@ -197,13 +197,6 @@ function palindrome(str) {
     return "Yes";
 }
 
-function productExceptSelf(arr){
-    let prod = arr[0]
-   for(const num of arr){
-      return prod*=num
-   }
-   return prod
-}
 // linkedList
 function reverseList(head){
     const prev = null
