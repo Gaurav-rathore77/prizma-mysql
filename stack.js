@@ -51,6 +51,15 @@ class MinStack {
     }
 }
 
+const minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+console.log(minStack.getMin()); // Returns -3
+minStack.pop();
+console.log(minStack.top());    // Returns 0
+console.log(minStack.getMin()); // Returns -2
+
 class MyStack {
     constructor() {
         this.queue = [];
@@ -80,6 +89,8 @@ class MyStack {
     }
 }
 
+console.log(isValid("()"));
+
 function nextGreaterElement(nums1, nums2) {
     const stack = [];
     const map = new Map();
@@ -100,3 +111,5 @@ function nextGreaterElement(nums1, nums2) {
 
     return nums1.map(num => map.get(num));
 } 
+
+console.log(nextGreaterElement([4,1,2], [1,3,4,2]));
