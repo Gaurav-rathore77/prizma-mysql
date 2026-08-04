@@ -169,4 +169,33 @@ function asteroidCollision(asteroids) {
 
     return stack;
 }
+
+function removeKdigits(num, k) {
+    const stack = [];
+
+    for (let digit of num) {
+
+        while (
+            k > 0 &&
+            stack.length &&
+            stack[stack.length - 1] > digit
+        ) {
+            stack.pop();
+            k--;
+        }
+
+        stack.push(digit);
+    }
+
+    while (k > 0) {
+        stack.pop();
+        k--;
+    }
+
+    while (stack.length && stack[0] === '0') {
+        stack.shift();
+    }
+
+    return stack.length ? stack.join('') : "0";
+}
 console.log(nextGreaterElement([4,1,2], [1,3,4,2]));
