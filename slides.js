@@ -163,7 +163,47 @@ function minSubArrayLen(target, arr) {
 
     return minLength;
 }
-v
+
+function checkInclusion(s1, s2) {
+    if (s1.length > s2.length) return false;
+
+    const count1 = new Array(26).fill(0);
+    const count2 = new Array(26).fill(0);
+
+    const a = 'a'.charCodeAt(0);
+
+    // Build frequency arrays
+    for (let i = 0; i < s1.length; i++) {
+        count1[s1.charCodeAt(i) - a]++;
+        count2[s2.charCodeAt(i) - a]++;
+    }
+
+    // Compare first window
+    if (isEqual(count1, count2)) return true;
+
+    // Slide the window
+    for (let i = s1.length; i < s2.length; i++) {
+
+        // Add new character
+        count2[s2.charCodeAt(i) - a]++;
+
+        // Remove left character
+        count2[s2.charCodeAt(i - s1.length) - a]--;
+
+        if (isEqual(count1, count2))
+            return true;
+    }
+
+    return false;
+}
+
+function isEqual(arr1, arr2) {
+    for (let i = 0; i < 26; i++) {
+        if (arr1[i] !== arr2[i]) return false;
+    }
+    return true;
+}
+
 
 console.log(minSubArrayLen(7, [2,3,1,2,4,3]));
 // Output: 2
