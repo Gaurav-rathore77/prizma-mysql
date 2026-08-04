@@ -136,4 +136,37 @@ function dailyTemperatures(temperatures) {
     return ans;
 }
 
+function asteroidCollision(asteroids) {
+    const stack = [];
+
+    for (let asteroid of asteroids) {
+
+        let alive = true;
+
+        while (
+            alive &&
+            asteroid < 0 &&
+            stack.length &&
+            stack[stack.length - 1] > 0
+        ) {
+
+            let top = stack[stack.length - 1];
+
+            if (top < -asteroid) {
+                stack.pop();
+            } else if (top === -asteroid) {
+                stack.pop();
+                alive = false;
+            } else {
+                alive = false;
+            }
+        }
+
+        if (alive) {
+            stack.push(asteroid);
+        }
+    }
+
+    return stack;
+}
 console.log(nextGreaterElement([4,1,2], [1,3,4,2]));
