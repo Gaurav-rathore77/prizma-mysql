@@ -163,7 +163,36 @@ function minSubArrayLen(target, arr) {
 
     return minLength;
 }
+function isAnagram(s, t) {
+    if (s.length !== t.length) return false;
 
+    const count1 = new Array(26).fill(0);
+    const count2 = new Array(26).fill(0);
+
+    const a = 'a'.charCodeAt(0);
+
+    // Build frequency arrays
+    for (let i = 0; i < s.length; i++) {
+        count1[s.charCodeAt(i) - a]++;
+        count2[t.charCodeAt(i) - a]++;
+    }
+
+    // Compare both frequency arrays
+    return isEqual(count1, count2);
+}
+
+function isEqual(arr1, arr2) {
+    for (let i = 0; i < 26; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+console.log(isAnagram("anagram", "nagaram")); // true
+console.log(isAnagram("rat", "car"));         // false
 function checkInclusion(s1, s2) {
     if (s1.length > s2.length) return false;
 
