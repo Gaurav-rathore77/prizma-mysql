@@ -204,6 +204,44 @@ function isEqual(arr1, arr2) {
     return true;
 }
 
+function findAnagrams(s, p) {
+    if (p.length > s.length) return [];
+
+    let result = [];
+    let countP = new Array(26).fill(0);
+    let countS = new Array(26).fill(0);
+    let a = "a".charCodeAt(0);
+
+    // Frequency arrays
+    for (let i = 0; i < p.length; i++) {
+        countP[p.charCodeAt(i) - a]++;
+        countS[s.charCodeAt(i) - a]++;
+    }
+
+    // First window
+    if (countP.toString() === countS.toString()) {
+        result.push(0);
+    }
+
+    // Sliding Window
+    for (let i = p.length; i < s.length; i++) {
+
+        // New character add
+        countS[s.charCodeAt(i) - a]++;
+
+        // Old character remove
+        countS[s.charCodeAt(i - p.length) - a]--;
+
+        // Compare
+        if (countP.toString() === countS.toString()) {
+            result.push(i - p.length + 1);
+        }
+    }
+
+    return result;
+}
+
+
 
 console.log(minSubArrayLen(7, [2,3,1,2,4,3]));
 // Output: 2
