@@ -27,6 +27,21 @@ function invertPiramidPrint(n){
         console.log(row)
     }
 }
+function piraidWithSpacePrint(n){
+    for(let i = 0 ; i<=n ; i ++){
+        let row = ""
+    
+         for (let j = 0; j <= n - i; j++) {
+            row += " ";
+        }
+        for(let j  = 0 ; j <=i; j++){
+            
+            row+="*"
+        }
+        console.log(row)
+    }
+}
+piraidWithSpacePrint(5)
 invertPiramidPrint(5)
 piraidPrint(5)
 sqPrint(5)
