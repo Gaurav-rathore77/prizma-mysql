@@ -198,4 +198,36 @@ function removeKdigits(num, k) {
 
     return stack.length ? stack.join('') : "0";
 }
+
+function largestRectangleArea(heights) {
+    const stack = [];
+    let maxArea = 0;
+
+    for (let i = 0; i <= heights.length; i++) {
+
+        let currentHeight = (i === heights.length) ? 0 : heights[i];
+
+        while (
+            stack.length &&
+            heights[stack[stack.length - 1]] > currentHeight
+        ) {
+
+            let height = heights[stack.pop()];
+
+            let width;
+
+            if (stack.length === 0) {
+                width = i;
+            } else {
+                width = i - stack[stack.length - 1] - 1;
+            }
+
+            maxArea = Math.max(maxArea, height * width);
+        }
+
+        stack.push(i);
+    }
+
+    return maxArea;
+}
 console.log(nextGreaterElement([4,1,2], [1,3,4,2]));
