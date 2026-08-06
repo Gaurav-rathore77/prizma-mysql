@@ -41,6 +41,21 @@ function piraidWithSpacePrint(n){
         console.log(row)
     }
 }
+function fullPiramid(n){
+    for(let i = 0 ; i< n ; i ++){
+        let row = ""
+        
+     for (let j = 0; j < n - i - 1; j++) {
+            row += " ";
+        }
+
+     
+    for(let j = 0  ; j<2*i+1 ; j++){
+       row+="*"
+    }
+    console.log(row)
+}}
+fullPiramid(5)
 piraidWithSpacePrint(5)
 invertPiramidPrint(5)
 piraidPrint(5)
