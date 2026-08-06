@@ -70,6 +70,36 @@ function ivertedFulluPirammid(n){
         console.log(row)
     }
 }
+
+function diomond(n){
+     for(let i = 0 ; i<n ; i ++){
+        row = ""
+        
+        for(let j = 0 ; j <=n-i-1 ; j++){
+            row+=" "
+        }
+        
+        for(let j = 0 ;j<2*i+1 ; j++ ){
+            row+="*"
+        }
+        
+        console.log(row)
+    }
+    for(let i = n ; i>=0 ; i --){
+        row = ""
+        
+        for(let j = 0 ; j <=n-i-1 ; j++){
+            row+=" "
+        }
+        
+        for(let j = 0 ;j<2*i+1 ; j++ ){
+            row+="*"
+        }
+        
+        console.log(row)
+    }
+}
+diomond(5)
 ivertedFulluPirammid(5)
 fullPiramid(5)
 piraidWithSpacePrint(5)
