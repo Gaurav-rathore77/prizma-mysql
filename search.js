@@ -125,5 +125,28 @@ function findPeakElement(nums) {
 
     return left;
 }
+
+function mySqrt(x) {
+    if (x < 2) return x;
+
+    let left = 1;
+    let right = x;
+    let ans = 0;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (mid * mid === x) {
+            return mid;
+        } else if (mid * mid < x) {
+            ans = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return ans;
+}
 const arr = [2, 4, 6, 8, 10, 12];
 console.log(binarySearch(arr, 8)); // 3
