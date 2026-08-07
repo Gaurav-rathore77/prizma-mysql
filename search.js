@@ -88,5 +88,23 @@ function search(nums, target) {
 
     return -1;
 }
+function findMin(nums) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (nums[mid] > nums[right]) {
+            // Minimum is in right half
+            left = mid + 1;
+        } else {
+            // Minimum is at mid or left half
+            right = mid;
+        }
+    }
+
+    return nums[left];
+} 
 const arr = [2, 4, 6, 8, 10, 12];
 console.log(binarySearch(arr, 8)); // 3
