@@ -34,7 +34,8 @@ function searchInsert(nums, target) {
     }
 
     return left;
-}function searchInsert(nums, target) {
+}
+function searchInsert(nums, target) {
     let left = 0;
     let right = nums.length - 1;
 
@@ -173,5 +174,6 @@ function minEatingSpeed(piles, h) {
 
     return ans;
 }
+
 const arr = [2, 4, 6, 8, 10, 12];
 console.log(binarySearch(arr, 8)); // 3
