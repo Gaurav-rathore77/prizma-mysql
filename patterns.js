@@ -49,7 +49,6 @@ function fullPiramid(n){
             row += " ";
         }
 
-     
     for(let j = 0  ; j<2*i+1 ; j++){
        row+="*"
     }
@@ -115,7 +114,8 @@ function hollowSquare(n) {
     }
 }
 
-hollowSquare(6);function hollowSquare(n) {
+hollowSquare(6);
+function hollowSquare(n) {
     for (let i = 0; i < n; i++) {
         let row = "";
 
@@ -130,6 +130,19 @@ hollowSquare(6);function hollowSquare(n) {
         console.log(row);
     }
 }
+function numberTriangle(n) {
+    for (let i = 1; i <= n; i++) {
+        let row = "";
+
+        for (let j = 1; j <= i; j++) {
+            row += j;
+        }
+
+        console.log(row);
+    }
+}
+
+numberTriangle(5);
 
 hollowSquare(6);
 diomond(5)
