@@ -170,7 +170,33 @@ function floydTriangle(n) {
         console.log(row);
     }
 }
+function pascalTriangle(n) {
+    for (let row = 0; row < n; row++) {
+        let result = "";
 
+        for (let col = 0; col <= row; col++) {
+            result += combination(row, col) + " ";
+        }
+
+        console.log(result);
+    }
+}
+
+function combination(n, r) {
+    return factorial(n) / (factorial(r) * factorial(n - r));
+}
+
+function factorial(n) {
+    let fact = 1;
+
+    for (let i = 1; i <= n; i++) {
+        fact *= i;
+    }
+
+    return fact;
+}
+
+pascalTriangle(5);
 floydTriangle(5);
 numberTriangle(5);
 numberTriangle(5);
