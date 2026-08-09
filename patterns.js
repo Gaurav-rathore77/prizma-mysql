@@ -235,7 +235,53 @@ function zeroOneTriangleoptimal(n) {
         console.log(row);
     }
 }
+function butterfly(n) {
+    // Upper half
+    for (let i = 1; i <= n; i++) {
+        let row = "";
 
+        // Left stars
+        for (let j = 1; j <= i; j++) {
+            row += "*";
+        }
+
+        // Spaces
+        for (let j = 1; j <= 2 * (n - i); j++) {
+            row += " ";
+        }
+
+        // Right stars
+        for (let j = 1; j <= i; j++) {
+            row += "*";
+        }
+
+        console.log(row);
+    }
+
+    // Lower half
+    for (let i = n; i >= 1; i--) {
+        let row = "";
+
+        // Left stars
+        for (let j = 1; j <= i; j++) {
+            row += "*";
+        }
+
+        // Spaces
+        for (let j = 1; j <= 2 * (n - i); j++) {
+            row += " ";
+        }
+
+        // Right stars
+        for (let j = 1; j <= i; j++) {
+            row += "*";
+        }
+
+        console.log(row);
+    }
+}
+
+butterfly(4);
 zeroOneTriangleoptimal(5);
 zeroOneTriangle(5);
 pascalTriangleoptimal(5);
