@@ -224,7 +224,19 @@ function zeroOneTriangle(n) {
         console.log(row);
     }
 }
+function zeroOneTriangleoptimal(n) {
+    for (let i = 1; i <= n; i++) {
+        let row = "";
 
+        for (let j = 1; j <= i; j++) {
+            row += (i + j) % 2 === 0 ? "1" : "0";
+        }
+
+        console.log(row);
+    }
+}
+
+zeroOneTriangleoptimal(5);
 zeroOneTriangle(5);
 pascalTriangleoptimal(5);
 pascalTriangle(5);
