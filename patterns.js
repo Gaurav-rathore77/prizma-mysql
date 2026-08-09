@@ -209,7 +209,23 @@ function pascalTriangleoptimal(n) {
         console.log(result);
     }
 }
+function zeroOneTriangle(n) {
+    for (let i = 1; i <= n; i++) {
+        let row = "";
 
+        for (let j = 1; j <= i; j++) {
+            if ((i + j) % 2 === 0) {
+                row += "1";
+            } else {
+                row += "0";
+            }
+        }
+
+        console.log(row);
+    }
+}
+
+zeroOneTriangle(5);
 pascalTriangleoptimal(5);
 pascalTriangle(5);
 floydTriangle(5);
