@@ -156,7 +156,22 @@ function numberTriangle(n) {
 
     console.log(result.join("\n"));
 }
+function floydTriangle(n) {
+    let num = 1;
 
+    for (let i = 1; i <= n; i++) {
+        let row = "";
+
+        for (let j = 1; j <= i; j++) {
+            row += num + " ";
+            num++;
+        }
+
+        console.log(row);
+    }
+}
+
+floydTriangle(5);
 numberTriangle(5);
 numberTriangle(5);
 
