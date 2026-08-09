@@ -195,7 +195,22 @@ function factorial(n) {
 
     return fact;
 }
+function pascalTriangleoptimal(n) {
+    for (let row = 0; row < n; row++) {
+        let value = 1;
+        let result = "";
 
+        for (let col = 0; col <= row; col++) {
+            result += value + " ";
+
+            value = value * (row - col) / (col + 1);
+        }
+
+        console.log(result);
+    }
+}
+
+pascalTriangleoptimal(5);
 pascalTriangle(5);
 floydTriangle(5);
 numberTriangle(5);
