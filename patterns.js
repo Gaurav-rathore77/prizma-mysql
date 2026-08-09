@@ -141,7 +141,23 @@ function numberTriangle(n) {
         console.log(row);
     }
 }
+function numberTriangle(n) {
+    const result = [];
 
+    for (let i = 1; i <= n; i++) {
+        const row = [];
+
+        for (let j = 1; j <= i; j++) {
+            row.push(j);
+        }
+
+        result.push(row.join(""));
+    }
+
+    console.log(result.join("\n"));
+}
+
+numberTriangle(5);
 numberTriangle(5);
 
 hollowSquare(6);
