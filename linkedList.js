@@ -193,3 +193,68 @@ function addTwoNumbers(l1, l2) {
 
     return dummy.next;
 }
+function reverseBetween(head, left, right) {
+    const dummy = new ListNode(0);
+    dummy.next = head;
+
+    // Move prev to the node before `left`
+    let prev = dummy;
+
+    for (let i = 1; i < left; i++) {
+        prev = prev.next;
+    }
+
+    // Reverse the sublist
+    let curr = prev.next;
+
+    for (let i = 0; i < right - left; i++) {
+        const next = curr.next;
+
+        curr.next = next.next;
+        next.next = prev.next;
+        prev.next = next;
+    }
+
+    return dummy.next;
+}
+
+function reorderList(head) {
+    if (!head || !head.next) return;
+
+    // 1. Find the middle
+    let slow = head;
+    let fast = head;
+
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // 2. Reverse the second half
+    let prev = null;
+    let curr = slow.next;
+
+    slow.next = null; // split the list
+
+    while (curr) {
+        const next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    // 3. Merge the two halves alternately
+    let first = head;
+    let second = prev;
+
+    while (second) {
+        const firstNext = first.next;
+        const secondNext = second.next;
+
+        first.next = second;
+        second.next = firstNext;
+
+        first = firstNext;
+        second = secondNext;
+    }
+}
