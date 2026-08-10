@@ -74,3 +74,122 @@ function mergeTwoLists(list1, list2) {
 
     return dummy.next;
 }
+
+function removeNthFromEnd(head, n) {
+    const dummy = new ListNode(0);
+    dummy.next = head;
+
+    let slow = dummy;
+    let fast = dummy;
+
+    // Move fast n steps ahead
+    for (let i = 0; i < n; i++) {
+        fast = fast.next;
+    }
+
+    // Move both until fast reaches the last node
+    while (fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    // Remove slow.next
+    slow.next = slow.next.next;
+
+    return dummy.next;
+}function removeNthFromEnd(head, n) {
+    const dummy = new ListNode(0);
+    dummy.next = head;
+
+    let slow = dummy;
+    let fast = dummy;
+
+    // Move fast n steps ahead
+    for (let i = 0; i < n; i++) {
+        fast = fast.next;
+    }
+
+    // Move both until fast reaches the last node
+    while (fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    // Remove slow.next
+    slow.next = slow.next.next;
+
+    return dummy.next;
+}
+
+function isPalindrome(head) {
+    if (!head || !head.next) return true;
+
+    // 1. Find the middle
+    let slow = head;
+    let fast = head;
+
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // 2. Reverse the second half
+    let prev = null;
+
+    while (slow) {
+        const next = slow.next;
+        slow.next = prev;
+        prev = slow;
+        slow = next;
+    }
+
+    // 3. Compare first half and reversed second half
+    let left = head;
+    let right = prev;
+
+    while (right) {
+        if (left.val !== right.val) {
+            return false;
+        }
+
+        left = left.next;
+        right = right.next;
+    }
+
+    return true;
+}
+
+function getIntersectionNode(headA, headB) {
+    let a = headA;
+    let b = headB;
+
+    while (a !== b) {
+        a = a === null ? headB : a.next;
+        b = b === null ? headA : b.next;
+    }
+
+    return a;
+}
+
+function addTwoNumbers(l1, l2) {
+    const dummy = new ListNode(0);
+    let curr = dummy;
+    let carry = 0;
+
+    while (l1 || l2 || carry) {
+        const x = l1 ? l1.val : 0;
+        const y = l2 ? l2.val : 0;
+
+        const sum = x + y + carry;
+
+        carry = Math.floor(sum / 10);
+
+        curr.next = new ListNode(sum % 10);
+        curr = curr.next;
+
+        if (l1) l1 = l1.next;
+        if (l2) l2 = l2.next;
+    }
+
+    return dummy.next;
+}
