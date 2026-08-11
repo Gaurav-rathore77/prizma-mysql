@@ -426,4 +426,20 @@ search(value) {
   return null;
 }
 
+
+reverse() {
+  let current = this.head;
+
+  while (current !== null) {
+    // Swap next and prev
+    [current.next, current.prev] = [current.prev, current.next];
+
+    // Move to the next node in the original direction
+    current = current.prev;
+  }
+
+  // Swap head and tail
+  [this.head, this.tail] = [this.tail, this.head];
+}
+
 }
