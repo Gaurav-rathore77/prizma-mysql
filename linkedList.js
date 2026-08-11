@@ -412,4 +412,18 @@ deleteNode(node) {
   this.size--;
 }
 
+search(value) {
+  let current = this.head;
+
+  while (current !== null) {
+    if (current.value === value) {
+      return current;
+    }
+
+    current = current.next;
+  }
+
+  return null;
+}
+
 }
