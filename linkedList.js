@@ -97,7 +97,9 @@ function removeNthFromEnd(head, n) {
     slow.next = slow.next.next;
 
     return dummy.next;
-}function removeNthFromEnd(head, n) {
+}
+
+function removeNthFromEnd(head, n) {
     const dummy = new ListNode(0);
     dummy.next = head;
 
@@ -187,8 +189,7 @@ function addTwoNumbers(l1, l2) {
         curr.next = new ListNode(sum % 10);
         curr = curr.next;
 
-        if (l1) l1 = l1.next;
-        if (l2) l2 = l2.next;
+          l2.next;
     }
 
     return dummy.next;
@@ -257,4 +258,75 @@ function reorderList(head) {
         first = firstNext;
         second = secondNext;
     }
+}
+
+// doubly link list 
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  insertAtBeginning(value) {
+    const newNode = new Node(value);
+
+    // Empty list
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } 
+    // Non-empty list
+    else {
+      newNode.next = this.head;
+      this.head.prev = newNode;
+      this.head = newNode;
+    }
+
+    this.size++;
+  }
+}
+
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  insertAtEnd(value) {
+    const newNode = new Node(value);
+
+    // Empty list
+    if (this.tail === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } 
+    // Non-empty list
+    else {
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+
+    this.size++;
+  }
 }
