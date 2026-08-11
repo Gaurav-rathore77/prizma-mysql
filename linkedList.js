@@ -329,4 +329,32 @@ class DoublyLinkedList {
 
     this.size++;
   }
+
+  deleteFromBeginning() {
+    // Empty list
+    if (this.head === null) {
+      return null;
+    }
+
+    // Only one node
+    if (this.head === this.tail) {
+      const deletedValue = this.head.value;
+
+      this.head = null;
+      this.tail = null;
+      this.size--;
+
+      return deletedValue;
+    }
+
+    // Multiple nodes
+    const deletedValue = this.head.value;
+
+    this.head = this.head.next;
+    this.head.prev = null;
+
+    this.size--;
+
+    return deletedValue;
+  }
 }
