@@ -387,4 +387,29 @@ class DoublyLinkedList {
   return deletedValue;
 }
 
+deleteNode(node) {
+  // Invalid node
+  if (node === null) {
+    return;
+  }
+
+  // If node is head
+  if (node === this.head) {
+    this.deleteFromBeginning();
+    return;
+  }
+
+  // If node is tail
+  if (node === this.tail) {
+    this.deleteFromEnd();
+    return;
+  }
+
+  // Middle node
+  node.prev.next = node.next;
+  node.next.prev = node.prev;
+
+  this.size--;
+}
+
 }
