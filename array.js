@@ -423,6 +423,19 @@ function isSorted(arr, index = 0) {
 
     return isSorted(arr, index + 1);
 }
+
+function search(arr, index, target) {
+
+    if (index === arr.length) {
+        return -1;
+    }
+
+    if (arr[index] === target) {
+        return index;
+    }
+
+    return search(arr, index + 1, target);
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
