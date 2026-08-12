@@ -479,6 +479,23 @@ function reverse(arr, left, right) {
 
     reverse(arr, left + 1, right - 1);
 }
+
+function isPalindrome(arr, left, right) {
+
+    if (left >= right) {
+        return true;
+    }
+
+    if (arr[left] !== arr[right]) {
+        return false;
+    }
+
+    return isPalindrome(
+        arr,
+        left + 1,
+        right - 1
+    );
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
