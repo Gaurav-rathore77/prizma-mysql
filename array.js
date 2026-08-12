@@ -549,6 +549,33 @@ function subsets(arr) {
     return result;
 }
 
+function subsequences(arr) {
+    const result = [];
+
+    function solve(i, current) {
+        // Base case
+        if (i === arr.length) {
+            result.push([...current]);
+            return;
+        }
+
+        // Choice 1: Skip current element
+        solve(i + 1, current);
+
+        // Choice 2: Take current element
+        current.push(arr[i]);
+        solve(i + 1, current);
+
+        // Backtrack
+        current.pop();
+    }
+
+    solve(0, []);
+
+    return result;
+}
+
+console.log(subsequences([1, 2, 3]));
 console.log(subsets([1, 2, 3]));
 console.log(removeElement([1, 2, 3, 2, 4], 2));
 // [1, 3, 4]
