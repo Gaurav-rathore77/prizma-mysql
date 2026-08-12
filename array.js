@@ -509,6 +509,21 @@ function count(arr, index, target) {
     return current +
            count(arr, index + 1, target);
 }
+
+function removeElement(arr, x, i = 0) {
+    if (i === arr.length) return [];
+
+    const rest = removeElement(arr, x, i + 1);
+
+    if (arr[i] === x) {
+        return rest;
+    }
+
+    return [arr[i], ...rest];
+}
+
+console.log(removeElement([1, 2, 3, 2, 4], 2));
+// [1, 3, 4]
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
