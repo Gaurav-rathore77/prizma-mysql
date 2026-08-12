@@ -399,6 +399,30 @@ function maxElement(arr, index) {
         maxElement(arr, index + 1)
     );
 }
+
+function minElement(arr, index) {
+
+    if (index === arr.length - 1) {
+        return arr[index];
+    }
+
+    return Math.min(
+        arr[index],
+        minElement(arr, index + 1)
+    );
+}
+function isSorted(arr, index = 0) {
+
+    if (index >= arr.length - 1) {
+        return true;
+    }
+
+    if (arr[index] > arr[index + 1]) {
+        return false;
+    }
+
+    return isSorted(arr, index + 1);
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
