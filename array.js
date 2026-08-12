@@ -375,6 +375,16 @@ function printArray(arr, index) {
     printArray(arr, index + 1);
 }
 
+
+function sum(arr, index) {
+
+    if (index === arr.length) {
+        return 0;
+    }
+
+    return arr[index] + sum(arr, index + 1);
+}
+
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
