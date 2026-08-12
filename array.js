@@ -575,6 +575,39 @@ function subsequences(arr) {
     return result;
 }
 
+function permutations(arr) {
+    const result = [];
+    const used = new Array(arr.length).fill(false);
+
+    function solve(current) {
+        // Base case
+        if (current.length === arr.length) {
+            result.push([...current]);
+            return;
+        }
+
+        // Try every unused element
+        for (let i = 0; i < arr.length; i++) {
+            if (used[i]) continue;
+
+            // Take
+            used[i] = true;
+            current.push(arr[i]);
+
+            solve(current);
+
+            // Backtrack
+            current.pop();
+            used[i] = false;
+        }
+    }
+
+    solve([]);
+
+    return result;
+}
+
+console.log(permutations([1, 2, 3]));
 console.log(subsequences([1, 2, 3]));
 console.log(subsets([1, 2, 3]));
 console.log(removeElement([1, 2, 3, 2, 4], 2));
