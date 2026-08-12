@@ -607,6 +607,45 @@ function permutations(arr) {
     return result;
 }
 
+
+function combinationSum(candidates, target) {
+    const result = [];
+
+    function solve(index, remaining, current) {
+        // Found a valid combination
+        if (remaining === 0) {
+            result.push([...current]);
+            return;
+        }
+
+        // Out of candidates / target exceeded
+        if (index === candidates.length || remaining < 0) {
+            return;
+        }
+
+        // Choice 1: Take candidates[index]
+        // We stay at the same index because we can reuse it
+        current.push(candidates[index]);
+
+        solve(
+            index,
+            remaining - candidates[index],
+            current
+        );
+
+        // Backtrack
+        current.pop();
+
+        // Choice 2: Skip candidates[index]
+        solve(index + 1, remaining, current);
+    }
+
+    solve(0, target, []);
+
+    return result;
+}
+
+console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permutations([1, 2, 3]));
 console.log(subsequences([1, 2, 3]));
 console.log(subsets([1, 2, 3]));
