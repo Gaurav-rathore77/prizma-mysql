@@ -236,7 +236,7 @@ function zeroOneTriangleoptimal(n) {
     }
 }
 function butterfly(n) {
-    // Upper half
+    // Upper half  
     for (let i = 1; i <= n; i++) {
         let row = "";
 

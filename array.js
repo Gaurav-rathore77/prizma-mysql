@@ -364,6 +364,17 @@ function maxSlidingWindow(nums, k) {
     return result;
 }
 
+function printArray(arr, index) {
+
+    if (index === arr.length) {
+        return;
+    }
+
+    console.log(arr[index]);
+
+    printArray(arr, index + 1);
+}
+
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
