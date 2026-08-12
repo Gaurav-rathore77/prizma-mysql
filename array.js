@@ -436,6 +436,37 @@ function search(arr, index, target) {
 
     return search(arr, index + 1, target);
 }
+
+function binarySearch(arr, left, right, target) {
+
+    if (left > right) {
+        return -1;
+    }
+
+    const mid = Math.floor(
+        left + (right - left) / 2
+    );
+
+    if (arr[mid] === target) {
+        return mid;
+    }
+
+    if (arr[mid] < target) {
+        return binarySearch(
+            arr,
+            mid + 1,
+            right,
+            target
+        );
+    }
+
+    return binarySearch(
+        arr,
+        left,
+        mid - 1,
+        target
+    );
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
