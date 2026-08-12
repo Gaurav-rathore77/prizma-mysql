@@ -467,6 +467,18 @@ function binarySearch(arr, left, right, target) {
         target
     );
 }
+
+function reverse(arr, left, right) {
+
+    if (left >= right) {
+        return;
+    }
+
+    [arr[left], arr[right]] =
+    [arr[right], arr[left]];
+
+    reverse(arr, left + 1, right - 1);
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
