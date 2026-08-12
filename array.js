@@ -364,6 +364,8 @@ function maxSlidingWindow(nums, k) {
     return result;
 }
 
+// recursion ///////////////
+
 function printArray(arr, index) {
 
     if (index === arr.length) {
@@ -385,6 +387,18 @@ function sum(arr, index) {
     return arr[index] + sum(arr, index + 1);
 }
 
+
+function maxElement(arr, index) {
+
+    if (index === arr.length - 1) {
+        return arr[index];
+    }
+
+    return Math.max(
+        arr[index],
+        maxElement(arr, index + 1)
+    );
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
