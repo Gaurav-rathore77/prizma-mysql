@@ -496,6 +496,19 @@ function isPalindrome(arr, left, right) {
         right - 1
     );
 }
+
+function count(arr, index, target) {
+
+    if (index === arr.length) {
+        return 0;
+    }
+
+    const current =
+        arr[index] === target ? 1 : 0;
+
+    return current +
+           count(arr, index + 1, target);
+}
 console.log(maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3));
 // [3,3,5,5,6,7]
 
