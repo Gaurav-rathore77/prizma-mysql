@@ -124,7 +124,34 @@ function quickSort(arr) {
 
   return [...quickSort(left), pivot, ...quickSort(right)];
 }
+function countingSort(arr) {
+  if (arr.length === 0) return arr;
 
+  const max = Math.max(...arr);
+  const min = Math.min(...arr);
+
+  const count = new Array(max - min + 1).fill(0);
+
+  // Count frequency
+  for (const num of arr) {
+    count[num - min]++;
+  }
+
+  // Rebuild sorted array
+  const result = [];
+
+  for (let i = 0; i < count.length; i++) {
+    while (count[i] > 0) {
+      result.push(i + min);
+      count[i]--;
+    }
+  }
+
+  return result;
+}
+
+console.log(countingSort([4, 2, 2, 8, 3, 3, 1]));
+// [1, 2, 2, 3, 3, 4, 8]
 console.log(quickSort([5, 3, 8, 4, 2, 7, 1, 6]));
 // [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(mergeSort([5, 3, 8, 4, 2, 7, 1, 6]));
