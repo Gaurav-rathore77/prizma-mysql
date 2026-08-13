@@ -321,6 +321,29 @@ function kthLargest(arr, k) {
   return quickSelect(0, arr.length - 1);
 }
 
+
+function canAttendMeetings(intervals) {
+  // Sort by start time
+  intervals.sort((a, b) => a[0] - b[0]);
+
+  for (let i = 1; i < intervals.length; i++) {
+    // Current meeting starts before previous one ends
+    if (intervals[i][0] < intervals[i - 1][1]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(
+  canAttendMeetings([
+    [0, 30],
+    [5, 10],
+    [15, 20]
+  ])
+);
+// false
 console.log(kthLargest([3, 2, 1, 5, 6, 4], 2));
 // 5
 console.log(
