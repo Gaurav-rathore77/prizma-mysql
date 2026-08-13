@@ -413,6 +413,14 @@ function maxElement(arr, index) {
         maxElement(arr, index + 1)
     );
 }
+function findMax(arr,i=0) {
+    if(i===arr.length-1){
+        return arr[i]
+    }
+       let max = findMax(arr,i+1)
+       return arr[i]>max ? arr[i] : max
+    
+}
 
 function minElement(arr, index) {
 
@@ -425,6 +433,17 @@ function minElement(arr, index) {
         minElement(arr, index + 1)
     );
 }
+
+function findMin(arr, i = 0) {
+    if (i === arr.length - 1) {
+        return arr[i];
+    }
+
+    let min = findMin(arr, i + 1);
+
+    return arr[i] < min ? arr[i] : min;
+}
+
 function isSorted(arr, index = 0) {
 
     if (index >= arr.length - 1) {
