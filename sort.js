@@ -188,6 +188,52 @@ function countingSort(arr, exp) {
     }
 }
 
+
+function heapSort(arr) {
+
+    // Build Max Heap
+    for (let i = Math.floor(arr.length / 2) - 1; i >= 0; i--) {
+        heapify(arr, arr.length, i);
+    }
+
+    // Extract elements
+    for (let i = arr.length - 1; i > 0; i--) {
+
+        // Move maximum to the end
+        [arr[0], arr[i]] = [arr[i], arr[0]];
+
+        // Heapify remaining heap
+        heapify(arr, i, 0);
+    }
+
+    return arr;
+}
+
+function heapify(arr, n, i) {
+
+    let largest = i;
+
+    let left = 2 * i + 1;
+    let right = 2 * i + 2;
+
+    if (left < n && arr[left] > arr[largest]) {
+        largest = left;
+    }
+
+    if (right < n && arr[right] > arr[largest]) {
+        largest = right;
+    }
+
+    if (largest !== i) {
+
+        [arr[i], arr[largest]] =
+        [arr[largest], arr[i]];
+
+        heapify(arr, n, largest);
+    }
+}
+
+console.log(heapSort([4, 10, 3, 5, 1]));
 console.log(radixSort([170, 45, 75, 90, 802, 24, 2, 66]));
 console.log(countingSort([4, 2, 2, 8, 3, 3, 1]));
 // [1, 2, 2, 3, 3, 4, 8]
