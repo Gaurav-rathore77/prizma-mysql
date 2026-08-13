@@ -306,7 +306,32 @@ function intToRoman(num) {
     return ans;
 }
 
+
+function romanToInt(s) {
+    const value = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000
+    };
+
+    let ans = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        if (i + 1 < s.length && value[s[i]] < value[s[i + 1]]) {
+            ans -= value[s[i]];
+        } else {
+            ans += value[s[i]];
+        }
+    }
+
+    return ans;
+}
 console.log(intToRoman(34))
+console.log(romanToInt("XXXIV"))
 console.log(lengthOfLongestSubstring("abcabcbb"));
 console.log(countDistinct([1,2,1,3,4,2,3],4));
 console.log(numSubarraysWithSum([1,0,1,0,1], 2));
