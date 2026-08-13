@@ -336,6 +336,26 @@ function canAttendMeetings(intervals) {
   return true;
 }
 
+
+function largestNumber(nums) {
+    nums = nums.map(String);
+
+    nums.sort((a, b) => {
+        return (b + a).localeCompare(a + b);
+    });
+
+    if (nums[0] === "0") {
+        return "0";
+    }
+
+    return nums.join("");
+}
+
+console.log(largestNumber([10, 2]));
+// "210"
+
+console.log(largestNumber([3, 30, 34, 5, 9]));
+// "9534330"
 console.log(
   canAttendMeetings([
     [0, 30],
