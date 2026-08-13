@@ -260,6 +260,43 @@ function sort012(arr) {
     return arr;
 }
 
+
+function mergeIntervals(intervals) {
+
+    intervals.sort((a, b) => a[0] - b[0]);
+
+    const result = [];
+
+    for (let interval of intervals) {
+
+        if (
+            result.length === 0 ||
+            interval[0] > result[result.length - 1][1]
+        ) {
+            // No overlap
+            result.push(interval);
+        } 
+        else {
+            // Overlap
+            result[result.length - 1][1] =
+                Math.max(
+                    result[result.length - 1][1],
+                    interval[1]
+                );
+        }
+    }
+
+    return result;
+}
+
+console.log(
+    mergeIntervals([
+        [1, 3],
+        [2, 6],
+        [8, 10],
+        [9, 12]
+    ])
+);
 console.log(sort012([2, 0, 2, 1, 1, 0]));
 console.log(heapSort([4, 10, 3, 5, 1]));
 console.log(radixSort([170, 45, 75, 90, 802, 24, 2, 66]));
