@@ -387,6 +387,20 @@ function sum(arr, index) {
     return arr[index] + sum(arr, index + 1);
 }
 
+function byttheindex(arr, index) {
+
+    if(index<0){
+        return 0
+    }
+
+    // if (index === arr.length) {
+    //     return 0;
+    // }
+
+    return arr[index] + sumarr(arr,index-1)
+}
+
+
 
 function maxElement(arr, index) {
 
