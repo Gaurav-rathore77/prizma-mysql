@@ -55,6 +55,56 @@ function insertionSort(arr) {
     return arr;
 }
 
+
+function mergeSort(arr) {
+  // Base case
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  // Divide
+  const mid = Math.floor(arr.length / 2);
+
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
+
+  // Conquer + Merge
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+  const result = [];
+
+  let i = 0;
+  let j = 0;
+
+  // Compare elements from both arrays
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      result.push(left[i]);
+      i++;
+    } else {
+      result.push(right[j]);
+      j++;
+    }
+  }
+
+  // Add remaining elements
+  while (i < left.length) {
+    result.push(left[i]);
+    i++;
+  }
+
+  while (j < right.length) {
+    result.push(right[j]);
+    j++;
+  }
+
+  return result;
+}
+
+console.log(mergeSort([5, 3, 8, 4, 2, 7, 1, 6]));
+// [1, 2, 3, 4, 5, 6, 7, 8]
 console.log(insertionSort([5, 3, 8, 1, 2]));
 console.log(selectionSort([5, 3, 8, 1, 2]));
 console.log(bubbleSort([5, 3, 8, 4, 2]));
