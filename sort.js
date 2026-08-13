@@ -289,6 +289,40 @@ function mergeIntervals(intervals) {
     return result;
 }
 
+
+function kthLargest(arr, k) {
+  const target = arr.length - k;
+
+  function quickSelect(left, right) {
+    const pivot = arr[right];
+
+    let p = left;
+
+    for (let i = left; i < right; i++) {
+      if (arr[i] <= pivot) {
+        [arr[i], arr[p]] = [arr[p], arr[i]];
+        p++;
+      }
+    }
+
+    [arr[p], arr[right]] = [arr[right], arr[p]];
+
+    if (p === target) {
+      return arr[p];
+    }
+
+    if (p < target) {
+      return quickSelect(p + 1, right);
+    }
+
+    return quickSelect(left, p - 1);
+  }
+
+  return quickSelect(0, arr.length - 1);
+}
+
+console.log(kthLargest([3, 2, 1, 5, 6, 4], 2));
+// 5
 console.log(
     mergeIntervals([
         [1, 3],
