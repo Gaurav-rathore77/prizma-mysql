@@ -228,6 +228,70 @@ const board = [
     ["A", "D", "E", "E"]
 ];
 
+
+function ratInMaze(maze) {
+    const n = maze.length;
+    const result = [];
+    const path = [];
+
+    if (maze[0][0] === 0 || maze[n - 1][n - 1] === 0) {
+        return result;
+    }
+
+    const visited = Array.from(
+        { length: n },
+        () => Array(n).fill(false)
+    );
+
+    const directions = [
+        [1, 0, "D"],   // Down
+        [0, -1, "L"],  // Left
+        [0, 1, "R"],   // Right
+        [-1, 0, "U"]   // Up
+    ];
+
+    function dfs(r, c) {
+        // Destination reached
+        if (r === n - 1 && c === n - 1) {
+            result.push(path.join(""));
+            return;
+        }
+
+        // Mark current cell
+        visited[r][c] = true;
+
+        for (const [dr, dc, move] of directions) {
+            const nr = r + dr;
+            const nc = c + dc;
+
+            // Check valid move
+            if (
+                nr >= 0 &&
+                nr < n &&
+                nc >= 0 &&
+                nc < n &&
+                maze[nr][nc] === 1 &&
+                !visited[nr][nc]
+            ) {
+                // Choose
+                path.push(move);
+
+                // Explore
+                dfs(nr, nc);
+
+                // Undo
+                path.pop();
+            }
+        }
+
+        // Backtrack
+        visited[r][c] = false;
+    }
+
+    dfs(0, 0);
+
+    return result;
+}
 console.log(exist(board, "ABCCED")); // true
 console.log(exist(board, "SEE"));    // true
 console.log(exist(board, "ABCB"));   // false
