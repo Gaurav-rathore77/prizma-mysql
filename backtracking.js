@@ -292,6 +292,58 @@ function ratInMaze(maze) {
 
     return result;
 }
+
+function solveNQueens(n) {
+    const result = [];
+    const board = Array.from(
+        { length: n },
+        () => Array(n).fill(".")
+    );
+
+    const cols = new Set();
+    const diag1 = new Set(); // r - c
+    const diag2 = new Set(); // r + c
+
+    function backtrack(row) {
+        // All queens placed
+        if (row === n) {
+            result.push(
+                board.map(row => row.join(""))
+            );
+            return;
+        }
+
+        for (let col = 0; col < n; col++) {
+            // Check column and diagonals
+            if (cols.has(col)) continue;
+            if (diag1.has(row - col)) continue;
+            if (diag2.has(row + col)) continue;
+
+            // Choose
+            board[row][col] = "Q";
+
+            cols.add(col);
+            diag1.add(row - col);
+            diag2.add(row + col);
+
+            // Explore
+            backtrack(row + 1);
+
+            // Undo
+            board[row][col] = ".";
+
+            cols.delete(col);
+            diag1.delete(row - col);
+            diag2.delete(row + col);
+        }
+    }
+
+    backtrack(0);
+
+    return result;
+}
+
+console.log(solveNQueens(4));
 console.log(exist(board, "ABCCED")); // true
 console.log(exist(board, "SEE"));    // true
 console.log(exist(board, "ABCB"));   // false
