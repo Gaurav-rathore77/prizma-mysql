@@ -169,6 +169,68 @@ function partition(s) {
     return result;
 }
 
+
+function exist(board, word) {
+    const rows = board.length;
+    const cols = board[0].length;
+
+    function dfs(r, c, index) {
+        // Found the complete word
+        if (index === word.length) {
+            return true;
+        }
+
+        // Out of bounds
+        if (
+            r < 0 ||
+            r >= rows ||
+            c < 0 ||
+            c >= cols
+        ) {
+            return false;
+        }
+
+        // Wrong character
+        if (board[r][c] !== word[index]) {
+            return false;
+        }
+
+        // Mark cell as visited
+        const temp = board[r][c];
+        board[r][c] = "#";
+
+        const found =
+            dfs(r + 1, c, index + 1) ||
+            dfs(r - 1, c, index + 1) ||
+            dfs(r, c + 1, index + 1) ||
+            dfs(r, c - 1, index + 1);
+
+        // Backtrack
+        board[r][c] = temp;
+
+        return found;
+    }
+
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if (dfs(r, c, 0)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+const board = [
+    ["A", "B", "C", "E"],
+    ["S", "F", "C", "S"],
+    ["A", "D", "E", "E"]
+];
+
+console.log(exist(board, "ABCCED")); // true
+console.log(exist(board, "SEE"));    // true
+console.log(exist(board, "ABCB"));   // false
 console.log(partition("aab"));
 console.log(
     combinationSum2([10, 1, 2, 7, 6, 1, 5], 8)
