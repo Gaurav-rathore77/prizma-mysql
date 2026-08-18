@@ -54,5 +54,41 @@ function permute(nums) {
     return result;
 }
 
+function combinationSum(candidates, target) {
+    const result = [];
+    const path = [];
+
+    function backtrack(start, remaining) {
+        // Found a valid combination
+        if (remaining === 0) {
+            result.push([...path]);
+            return;
+        }
+
+        for (let i = start; i < candidates.length; i++) {
+            const num = candidates[i];
+
+            // Since sorted, no later number can work either
+            if (num > remaining) break;
+
+            // Choose
+            path.push(num);
+
+            // i, NOT i + 1
+            // because we can reuse the same number
+            backtrack(i, remaining - num);
+
+            // Undo
+            path.pop();
+        }
+    }
+
+    candidates.sort((a, b) => a - b);
+    backtrack(0, target);
+
+    return result;
+}
+
+console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permute([1, 2, 3]));
 console.log(subsets([1, 2, 3]));
