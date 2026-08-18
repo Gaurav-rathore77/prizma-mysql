@@ -58,6 +58,8 @@ function countDistinct(arr, k) {
 
     return ans;
 }
+
+
 function characterReplacement(s, k) {
     let map = new Map();
 
@@ -103,7 +105,7 @@ function characterReplacement(s, k) {
 
     return ans;
 }
-function longestSubstring(s) {
+function longestSubstringnonRepeat(s) {
     let map = new Map();
 
     let left = 0;
@@ -163,6 +165,7 @@ function minSubArrayLen(target, arr) {
 
     return minLength;
 }
+
 function isAnagram(s, t) {
     if (s.length !== t.length) return false;
 

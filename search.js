@@ -176,4 +176,4 @@ function minEatingSpeed(piles, h) {
 }
 
 const arr = [2, 4, 6, 8, 10, 12];
-console.log(binarySearch(arr, 8)); // 3
+console.log(binarySearch(arr, 8));
