@@ -415,6 +415,60 @@ function solveSudoku(board) {
 
     backtrack();
 }
+
+function canPartitionKSubsets(nums, k) {
+    const total = nums.reduce((sum, num) => sum + num, 0);
+
+    // Total must be divisible by k
+    if (total % k !== 0) return false;
+
+    const target = total / k;
+
+    // Largest number cannot exceed target
+    if (Math.max(...nums) > target) return false;
+
+    // Large numbers first → better pruning
+    nums.sort((a, b) => b - a);
+
+    const buckets = new Array(k).fill(0);
+
+    function backtrack(index) {
+        // All numbers placed
+        if (index === nums.length) {
+            return true;
+        }
+
+        const num = nums[index];
+
+        for (let i = 0; i < k; i++) {
+
+            // Don't exceed target
+            if (buckets[i] + num > target) {
+                continue;
+            }
+
+            // Avoid equivalent empty buckets
+            if (i > 0 && buckets[i] === buckets[i - 1]) {
+                continue;
+            }
+
+            // Choose
+            buckets[i] += num;
+
+            // Explore
+            if (backtrack(index + 1)) {
+                return true;
+            }
+
+            // Undo
+            buckets[i] -= num;
+        }
+
+        return false;
+    }
+
+    return backtrack(0);
+}
 console.log(solveNQueens(4));
 console.log(exist(board, "ABCCED")); // true
 console.log(exist(board, "SEE"));    // true
