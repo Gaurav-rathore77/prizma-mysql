@@ -128,6 +128,48 @@ function combinationSum2(candidates, target) {
     return result;
 }
 
+
+function partition(s) {
+    const result = [];
+    const path = [];
+
+    function isPalindrome(left, right) {
+        while (left < right) {
+            if (s[left] !== s[right]) return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    function backtrack(start) {
+        // Entire string partitioned
+        if (start === s.length) {
+            result.push([...path]);
+            return;
+        }
+
+        for (let end = start; end < s.length; end++) {
+            // Only choose a palindrome substring
+            if (!isPalindrome(start, end)) continue;
+
+            // Choose
+            path.push(s.slice(start, end + 1));
+
+            // Explore
+            backtrack(end + 1);
+
+            // Undo
+            path.pop();
+        }
+    }
+
+    backtrack(0);
+
+    return result;
+}
+
+console.log(partition("aab"));
 console.log(
     combinationSum2([10, 1, 2, 7, 6, 1, 5], 8)
 );
