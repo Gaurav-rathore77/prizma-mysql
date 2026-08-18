@@ -89,6 +89,48 @@ function combinationSum(candidates, target) {
     return result;
 }
 
+function combinationSum2(candidates, target) {
+    const result = [];
+    const path = [];
+
+    candidates.sort((a, b) => a - b);
+
+    function backtrack(start, remaining) {
+        if (remaining === 0) {
+            result.push([...path]);
+            return;
+        }
+
+        for (let i = start; i < candidates.length; i++) {
+            // Skip duplicates at the same recursion level
+            if (i > start && candidates[i] === candidates[i - 1]) {
+                continue;
+            }
+
+            // Because sorted
+            if (candidates[i] > remaining) {
+                break;
+            }
+
+            // Choose
+            path.push(candidates[i]);
+
+            // i + 1 => each element can be used only once
+            backtrack(i + 1, remaining - candidates[i]);
+
+            // Undo
+            path.pop();
+        }
+    }
+
+    backtrack(0, target);
+
+    return result;
+}
+
+console.log(
+    combinationSum2([10, 1, 2, 7, 6, 1, 5], 8)
+);
 console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permute([1, 2, 3]));
 console.log(subsets([1, 2, 3]));
