@@ -343,6 +343,78 @@ function solveNQueens(n) {
     return result;
 }
 
+
+function solveSudoku(board) {
+    function isValid(row, col, num) {
+        // Row
+        for (let c = 0; c < 9; c++) {
+            if (board[row][c] === num) {
+                return false;
+            }
+        }
+
+        // Column
+        for (let r = 0; r < 9; r++) {
+            if (board[r][col] === num) {
+                return false;
+            }
+        }
+
+        // 3 x 3 box
+        const boxRow = Math.floor(row / 3) * 3;
+        const boxCol = Math.floor(col / 3) * 3;
+
+        for (let r = boxRow; r < boxRow + 3; r++) {
+            for (let c = boxCol; c < boxCol + 3; c++) {
+                if (board[r][c] === num) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    function backtrack() {
+        // Find an empty cell
+        for (let row = 0; row < 9; row++) {
+            for (let col = 0; col < 9; col++) {
+
+                if (board[row][col] !== ".") {
+                    continue;
+                }
+
+                // Try 1 → 9
+                for (let num = 1; num <= 9; num++) {
+                    const value = String(num);
+
+                    if (!isValid(row, col, value)) {
+                        continue;
+                    }
+
+                    // Choose
+                    board[row][col] = value;
+
+                    // Explore
+                    if (backtrack()) {
+                        return true;
+                    }
+
+                    // Undo
+                    board[row][col] = ".";
+                }
+
+                // No number works
+                return false;
+            }
+        }
+
+        // No empty cells → solved
+        return true;
+    }
+
+    backtrack();
+}
 console.log(solveNQueens(4));
 console.log(exist(board, "ABCCED")); // true
 console.log(exist(board, "SEE"));    // true
