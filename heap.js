@@ -171,3 +171,67 @@ class MaxHeap {
         }
     }
 }
+
+function maxHeapify(arr, i, n) {
+    while (true) {
+        let largest = i;
+
+        const left = 2 * i + 1;
+        const right = 2 * i + 2;
+
+        if (
+            left < n &&
+            arr[left] > arr[largest]
+        ) {
+            largest = left;
+        }
+
+        if (
+            right < n &&
+            arr[right] > arr[largest]
+        ) {
+            largest = right;
+        }
+
+        // Already satisfies heap property
+        if (largest === i) {
+            break;
+        }
+
+        [arr[i], arr[largest]] =
+        [arr[largest], arr[i]];
+
+        i = largest;
+    }
+}function maxHeapify(arr, i, n) {
+    while (true) {
+        let largest = i;
+
+        const left = 2 * i + 1;
+        const right = 2 * i + 2;
+
+        if (
+            left < n &&
+            arr[left] > arr[largest]
+        ) {
+            largest = left;
+        }
+
+        if (
+            right < n &&
+            arr[right] > arr[largest]
+        ) {
+            largest = right;
+        }
+
+        // Already satisfies heap property
+        if (largest === i) {
+            break;
+        }
+
+        [arr[i], arr[largest]] =
+        [arr[largest], arr[i]];
+
+        i = largest;
+    }
+}
