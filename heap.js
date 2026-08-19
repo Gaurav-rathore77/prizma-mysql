@@ -235,3 +235,65 @@ function maxHeapify(arr, i, n) {
         i = largest;
     }
 }
+
+function maxHeapify(arr, i, n) {
+    while (true) {
+        let largest = i;
+
+        const left = 2 * i + 1;
+        const right = 2 * i + 2;
+
+        if (
+            left < n &&
+            arr[left] > arr[largest]
+        ) {
+            largest = left;
+        }
+
+        if (
+            right < n &&
+            arr[right] > arr[largest]
+        ) {
+            largest = right;
+        }
+
+        if (largest === i) {
+            break;
+        }
+
+        [arr[i], arr[largest]] =
+        [arr[largest], arr[i]];
+
+        i = largest;
+    }
+}
+
+
+function heapSort(arr) {
+    const n = arr.length;
+
+    // Step 1: Build Max Heap
+    for (
+        let i = Math.floor(n / 2) - 1;
+        i >= 0;
+        i--
+    ) {
+        maxHeapify(arr, i, n);
+    }
+
+    // Step 2: Move max to end
+    for (
+        let end = n - 1;
+        end > 0;
+        end--
+    ) {
+        // Swap max with last
+        [arr[0], arr[end]] =
+        [arr[end], arr[0]];
+
+        // Restore heap
+        maxHeapify(arr, 0, end);
+    }
+
+    return arr;
+}
