@@ -363,3 +363,37 @@ function findKthSmallest(nums, k) {
 
 console.log(findKthSmallest([7, 10, 4, 3, 20, 15], 3));
 // 7
+
+function topKFrequent(nums, k) {
+    const freq = new Map();
+
+    // 1. Count frequencies
+    for (const num of nums) {
+        freq.set(num, (freq.get(num) || 0) + 1);
+    }
+
+    // 2. Bucket: index = frequency
+    const buckets = Array.from(
+        { length: nums.length + 1 },
+        () => []
+    );
+
+    for (const [num, count] of freq) {
+        buckets[count].push(num);
+    }
+
+    // 3. Traverse from highest frequency
+    const result = [];
+
+    for (let i = buckets.length - 1; i >= 0 && result.length < k; i--) {
+        for (const num of buckets[i]) {
+            result.push(num);
+
+            if (result.length === k) {
+                return result;
+            }
+        }
+    }
+
+    return result;
+}
