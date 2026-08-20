@@ -397,3 +397,79 @@ function topKFrequent(nums, k) {
 
     return result;
 }
+
+function kClosest(points, k) {
+    const heap = [];
+
+    function distance(point) {
+        return point[0] ** 2 + point[1] ** 2;
+    }
+
+    function push(point) {
+        heap.push(point);
+
+        let i = heap.length - 1;
+
+        while (i > 0) {
+            const parent = Math.floor((i - 1) / 2);
+
+            if (distance(heap[parent]) >= distance(heap[i])) {
+                break;
+            }
+
+            [heap[parent], heap[i]] = [heap[i], heap[parent]];
+            i = parent;
+        }
+    }
+
+    function pop() {
+        const top = heap[0];
+        const last = heap.pop();
+
+        if (heap.length > 0) {
+            heap[0] = last;
+
+            let i = 0;
+
+            while (true) {
+                let largest = i;
+                const left = 2 * i + 1;
+                const right = 2 * i + 2;
+
+                if (
+                    left < heap.length &&
+                    distance(heap[left]) > distance(heap[largest])
+                ) {
+                    largest = left;
+                }
+
+                if (
+                    right < heap.length &&
+                    distance(heap[right]) > distance(heap[largest])
+                ) {
+                    largest = right;
+                }
+
+                if (largest === i) break;
+
+                [heap[i], heap[largest]] =
+                    [heap[largest], heap[i]];
+
+                i = largest;
+            }
+        }
+
+        return top;
+    }
+
+    for (const point of points) {
+        push(point);
+
+        // Keep only K closest points
+        if (heap.length > k) {
+            pop();
+        }
+    }
+
+    return heap;
+}
