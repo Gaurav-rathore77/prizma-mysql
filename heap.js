@@ -328,3 +328,38 @@ function findKthLargest(nums, k) {
 
     return quickSelect(0, nums.length - 1);
 }
+
+function findKthSmallest(nums, k) {
+    const target = k - 1;
+
+    function quickSelect(left, right) {
+        const pivot = nums[right];
+        let p = left;
+
+        // Put smaller elements before pivot
+        for (let i = left; i < right; i++) {
+            if (nums[i] <= pivot) {
+                [nums[i], nums[p]] = [nums[p], nums[i]];
+                p++;
+            }
+        }
+
+        // Put pivot in its correct position
+        [nums[p], nums[right]] = [nums[right], nums[p]];
+
+        if (p === target) {
+            return nums[p];
+        }
+
+        if (p < target) {
+            return quickSelect(p + 1, right);
+        }
+
+        return quickSelect(left, p - 1);
+    }
+
+    return quickSelect(0, nums.length - 1);
+}
+
+console.log(findKthSmallest([7, 10, 4, 3, 20, 15], 3));
+// 7
