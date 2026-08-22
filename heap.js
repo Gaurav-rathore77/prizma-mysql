@@ -670,3 +670,107 @@ class KthLargest {
 }
 
 
+var reorganizeString = function(s) {
+    const freq = new Map();
+
+    // Count frequencies
+    for (const ch of s) {
+        freq.set(ch, (freq.get(ch) || 0) + 1);
+    }
+
+    // Max heap: [character, frequency]
+    const heap = [];
+
+    const push = (item) => {
+        heap.push(item);
+
+        let i = heap.length - 1;
+
+        while (i > 0) {
+            let parent = Math.floor((i - 1) / 2);
+
+            if (heap[parent][1] >= heap[i][1]) break;
+
+            [heap[parent], heap[i]] = [heap[i], heap[parent]];
+            i = parent;
+        }
+    };
+
+    const pop = () => {
+        const top = heap[0];
+        const last = heap.pop();
+
+        if (heap.length > 0) {
+            heap[0] = last;
+
+            let i = 0;
+
+            while (true) {
+                let left = 2 * i + 1;
+                let right = 2 * i + 2;
+                let largest = i;
+
+                if (
+                    left < heap.length &&
+                    heap[left][1] > heap[largest][1]
+                ) {
+                    largest = left;
+                }
+
+                if (
+                    right < heap.length &&
+                    heap[right][1] > heap[largest][1]
+                ) {
+                    largest = right;
+                }
+
+                if (largest === i) break;
+
+                [heap[i], heap[largest]] = [heap[largest], heap[i]];
+                i = largest;
+            }
+        }
+
+        return top;
+    };
+
+    for (const [ch, count] of freq) {
+        push([ch, count]);
+    }
+
+    let result = "";
+    let prev = null;
+
+    while (heap.length > 0) {
+        let [ch, count] = pop();
+
+        // Can't use the same character consecutively
+        if (ch === prev) {
+            if (heap.length === 0) return "";
+
+            let [ch2, count2] = pop();
+
+            result += ch2;
+            prev = ch2;
+
+            count2--;
+
+            if (count2 > 0) {
+                push([ch2, count2]);
+            }
+
+            push([ch, count]);
+        } else {
+            result += ch;
+            prev = ch;
+
+            count--;
+
+            if (count > 0) {
+                push([ch, count]);
+            }
+        }
+    }
+
+    return result;
+};
