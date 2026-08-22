@@ -800,3 +800,149 @@ var leastInterval = function(tasks, n) {
     // we simply need the number of tasks.
     return Math.max(tasks.length, result);
 };
+
+class Heap {
+    constructor(compare) {
+        this.heap = [];
+        this.compare = compare;
+    }
+
+    push(val) {
+        this.heap.push(val);
+
+        let i = this.heap.length - 1;
+
+        while (i > 0) {
+            const parent = Math.floor((i - 1) / 2);
+
+            if (this.compare(this.heap[parent], this.heap[i])) {
+                break;
+            }
+
+            [this.heap[parent], this.heap[i]] =
+                [this.heap[i], this.heap[parent]];
+
+            i = parent;
+        }
+    }
+
+    pop() {
+        if (this.heap.length === 1) {
+            return this.heap.pop();
+        }
+
+        const root = this.heap[0];
+        this.heap[0] = this.heap.pop();
+
+        let i = 0;
+
+        while (true) {
+            let left = 2 * i + 1;
+            let right = 2 * i + 2;
+            let best = i;
+
+            if (
+                left < this.heap.length &&
+                !this.compare(this.heap[best], this.heap[left])
+            ) {
+                best = left;
+            }
+
+            if (
+                right < this.heap.length &&
+                !this.compare(this.heap[best], this.heap[right])
+            ) {
+                best = right;
+            }
+
+            if (best === i) break;
+
+            [this.heap[i], this.heap[best]] =
+                [this.heap[best], this.heap[i]];
+
+            i = best;
+        }
+
+        return root;
+    }
+
+    peek() {
+        return this.heap[0];
+    }
+
+    size() {
+        return this.heap.length;
+    }
+}class Heap {
+    constructor(compare) {
+        this.heap = [];
+        this.compare = compare;
+    }
+
+    push(val) {
+        this.heap.push(val);
+
+        let i = this.heap.length - 1;
+
+        while (i > 0) {
+            const parent = Math.floor((i - 1) / 2);
+
+            if (this.compare(this.heap[parent], this.heap[i])) {
+                break;
+            }
+
+            [this.heap[parent], this.heap[i]] =
+                [this.heap[i], this.heap[parent]];
+
+            i = parent;
+        }
+    }
+
+    pop() {
+        if (this.heap.length === 1) {
+            return this.heap.pop();
+        }
+
+        const root = this.heap[0];
+        this.heap[0] = this.heap.pop();
+
+        let i = 0;
+
+        while (true) {
+            let left = 2 * i + 1;
+            let right = 2 * i + 2;
+            let best = i;
+
+            if (
+                left < this.heap.length &&
+                !this.compare(this.heap[best], this.heap[left])
+            ) {
+                best = left;
+            }
+
+            if (
+                right < this.heap.length &&
+                !this.compare(this.heap[best], this.heap[right])
+            ) {
+                best = right;
+            }
+
+            if (best === i) break;
+
+            [this.heap[i], this.heap[best]] =
+                [this.heap[best], this.heap[i]];
+
+            i = best;
+        }
+
+        return root;
+    }
+
+    peek() {
+        return this.heap[0];
+    }
+
+    size() {
+        return this.heap.length;
+    }
+}
