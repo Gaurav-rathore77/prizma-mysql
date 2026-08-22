@@ -774,3 +774,29 @@ var reorganizeString = function(s) {
 
     return result;
 };
+var leastInterval = function(tasks, n) {
+    const freq = new Array(26).fill(0);
+
+    // Count frequencies
+    for (const task of tasks) {
+        freq[task.charCodeAt(0) - 65]++;
+    }
+
+    const maxFreq = Math.max(...freq);
+
+    // How many tasks have the maximum frequency?
+    let maxCount = 0;
+
+    for (const count of freq) {
+        if (count === maxFreq) {
+            maxCount++;
+        }
+    }
+
+    const result =
+        (maxFreq - 1) * (n + 1) + maxCount;
+
+    // If other tasks fill all idle slots,
+    // we simply need the number of tasks.
+    return Math.max(tasks.length, result);
+};
