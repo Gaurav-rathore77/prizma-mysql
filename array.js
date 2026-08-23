@@ -678,6 +678,35 @@ function combinationSum(candidates, target) {
     return result;
 }
 
+function splitArray(nums, k) {
+    let low = Math.max(...nums);
+    let high = nums.reduce((sum, x) => sum + x, 0);
+
+    while (low < high) {
+        const mid = Math.floor(low + (high - low) / 2);
+
+        let subarrays = 1;
+        let currentSum = 0;
+
+        for (const num of nums) {
+            if (currentSum + num > mid) {
+                subarrays++;
+                currentSum = num;
+            } else {
+                currentSum += num;
+            }
+        }
+
+        if (subarrays <= k) {
+            high = mid;       // feasible → minimize
+        } else {
+            low = mid + 1;    // not feasible
+        }
+    }
+
+    return low;
+}
+
 console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permutations([1, 2, 3]));
 console.log(subsequences([1, 2, 3]));

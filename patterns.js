@@ -156,6 +156,7 @@ function numberTriangle(n) {
 
     console.log(result.join("\n"));
 }
+
 function floydTriangle(n) {
     let num = 1;
 
@@ -170,6 +171,7 @@ function floydTriangle(n) {
         console.log(row);
     }
 }
+
 function pascalTriangle(n) {
     for (let row = 0; row < n; row++) {
         let result = "";
@@ -235,6 +237,7 @@ function zeroOneTriangleoptimal(n) {
         console.log(row);
     }
 }
+
 function butterfly(n) {
     // Upper half  
     for (let i = 1; i <= n; i++) {
