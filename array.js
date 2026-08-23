@@ -707,6 +707,40 @@ function splitArray(nums, k) {
     return low;
 }
 
+var shipWithinDays = function(weights, days) {
+    let low = Math.max(...weights);
+    let high = weights.reduce((sum, w) => sum + w, 0);
+
+    while (low < high) {
+        const mid = Math.floor((low + high) / 2);
+
+        if (canShip(weights, days, mid)) {
+            // Capacity works → try smaller
+            high = mid;
+        } else {
+            // Capacity doesn't work → need larger
+            low = mid + 1;
+        }
+    }
+
+    return low;
+};
+
+function canShip(weights, days, capacity) {
+    let currentLoad = 0;
+    let usedDays = 1;
+
+    for (const weight of weights) {
+        if (currentLoad + weight > capacity) {
+            usedDays++;
+            currentLoad = 0;
+        }
+
+        currentLoad += weight;
+    }
+
+    return usedDays <= days;
+}
 console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permutations([1, 2, 3]));
 console.log(subsequences([1, 2, 3]));
