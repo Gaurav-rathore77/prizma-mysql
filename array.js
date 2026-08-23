@@ -797,6 +797,33 @@ function findMedianSortedArrays(nums1, nums2) {
         }
     }
 }
+
+var isIsomorphic = function(s, t) {
+    if (s.length !== t.length) return false;
+
+    const sToT = new Map();
+    const tToS = new Map();
+
+    for (let i = 0; i < s.length; i++) {
+        const a = s[i];
+        const b = t[i];
+
+        // Existing mapping conflicts
+        if (sToT.has(a) && sToT.get(a) !== b) {
+            return false;
+        }
+
+        // Reverse mapping conflicts
+        if (tToS.has(b) && tToS.get(b) !== a) {
+            return false;
+        }
+
+        sToT.set(a, b);
+        tToS.set(b, a);
+    }
+
+    return true;
+};
 console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permutations([1, 2, 3]));
 console.log(subsequences([1, 2, 3]));
