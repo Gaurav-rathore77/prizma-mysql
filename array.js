@@ -741,6 +741,62 @@ function canShip(weights, days, capacity) {
 
     return usedDays <= days;
 }
+
+function findMedianSortedArrays(nums1, nums2) {
+    // Binary search on the smaller array
+    if (nums1.length > nums2.length) {
+        [nums1, nums2] = [nums2, nums1];
+    }
+
+    const m = nums1.length;
+    const n = nums2.length;
+
+    let low = 0;
+    let high = m;
+
+    // Number of elements that should be on the left
+    const half = Math.floor((m + n + 1) / 2);
+
+    while (low <= high) {
+        const cut1 = Math.floor((low + high) / 2);
+        const cut2 = half - cut1;
+
+        const left1 =
+            cut1 === 0 ? -Infinity : nums1[cut1 - 1];
+
+        const right1 =
+            cut1 === m ? Infinity : nums1[cut1];
+
+        const left2 =
+            cut2 === 0 ? -Infinity : nums2[cut2 - 1];
+
+        const right2 =
+            cut2 === n ? Infinity : nums2[cut2];
+
+        // Correct partition
+        if (left1 <= right2 && left2 <= right1) {
+            // Odd length
+            if ((m + n) % 2 === 1) {
+                return Math.max(left1, left2);
+            }
+
+            // Even length
+            const leftMax = Math.max(left1, left2);
+            const rightMin = Math.min(right1, right2);
+
+            return (leftMax + rightMin) / 2;
+        }
+
+        // Too many elements taken from nums1
+        if (left1 > right2) {
+            high = cut1 - 1;
+        } 
+        // Need more elements from nums1
+        else {
+            low = cut1 + 1;
+        }
+    }
+}
 console.log(combinationSum([2, 3, 6, 7], 7));
 console.log(permutations([1, 2, 3]));
 console.log(subsequences([1, 2, 3]));
