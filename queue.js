@@ -41,3 +41,36 @@ class MyQueue {
         }
     }
 }
+
+class MyStack {
+    constructor() {
+        this.q = [];
+    }
+
+    push(x) {
+        this.q.push(x);
+
+        // Move all previous elements behind x
+        const size = this.q.length - 1;
+
+        for (let i = 0; i < size; i++) {
+            this.q.push(this.q.shift());
+        }
+    }
+
+    pop() {
+        if (this.empty()) return -1;
+
+        return this.q.shift();
+    }
+
+    top() {
+        if (this.empty()) return -1;
+
+        return this.q[0];
+    }
+
+    empty() {
+        return this.q.length === 0;
+    }
+}
