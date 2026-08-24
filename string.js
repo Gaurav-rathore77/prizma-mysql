@@ -240,7 +240,7 @@ function inserFirst(head,val){
 function insertLast(head,val){
      const node = new Node(val)
      const current = head 
-     if(head==nul){
+     if(head==null){
          return node
      }
      while(current!==null){
