@@ -140,3 +140,67 @@ console.log(firstNegative(
     [12, -1, -7, 8, -15, 30, 16, 28],
     3
 ));
+
+function orangesRotting(grid) {
+    const queue = [];
+    let front = 0;
+    let fresh = 0;
+    let minutes = 0;
+
+    const rows = grid.length;
+    const cols = grid[0].length;
+
+    // Put all rotten oranges into queue
+    // Count fresh oranges
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if (grid[r][c] === 2) {
+                queue.push([r, c]);
+            } else if (grid[r][c] === 1) {
+                fresh++;
+            }
+        }
+    }
+
+    const directions = [
+        [-1, 0], // up
+        [1, 0],  // down
+        [0, -1], // left
+        [0, 1]   // right
+    ];
+
+    // BFS
+    while (front < queue.length && fresh > 0) {
+
+        // Number of oranges rotten in this minute
+        const size = queue.length - front;
+
+        for (let i = 0; i < size; i++) {
+            const [r, c] = queue[front++];
+
+            for (const [dr, dc] of directions) {
+                const nr = r + dr;
+                const nc = c + dc;
+
+                // Check boundary + fresh orange
+                if (
+                    nr >= 0 &&
+                    nr < rows &&
+                    nc >= 0 &&
+                    nc < cols &&
+                    grid[nr][nc] === 1
+                ) {
+                    grid[nr][nc] = 2;
+                    fresh--;
+
+                    queue.push([nr, nc]);
+                }
+            }
+        }
+
+        minutes++;
+    }
+
+    // If fresh oranges are still left
+    return fresh === 0 ? minutes : -1;
+}
