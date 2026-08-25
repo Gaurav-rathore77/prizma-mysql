@@ -105,3 +105,38 @@ function maxSlidingWindow(nums, k) {
 
     return result;
 }
+
+function firstNegative(arr, k) {
+    const queue = [];
+    let front = 0;
+    const ans = [];
+
+    for (let i = 0; i < arr.length; i++) {
+
+        // If current element is negative, add its index
+        if (arr[i] < 0) {
+            queue.push(i);
+        }
+
+        // Remove elements that are outside the window
+        if (front < queue.length && queue[front] <= i - k) {
+            front++;
+        }
+
+        // Window size becomes k
+        if (i >= k - 1) {
+            if (front < queue.length) {
+                ans.push(arr[queue[front]]);
+            } else {
+                ans.push(0);
+            }
+        }
+    }
+
+    return ans;
+}
+
+console.log(firstNegative(
+    [12, -1, -7, 8, -15, 30, 16, 28],
+    3
+));
