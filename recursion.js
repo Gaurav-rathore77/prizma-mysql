@@ -46,4 +46,68 @@ function solveNQueens(n) {
     return result;
 }
 
+function solveNQueens(n) {
+    let ans = [];
+
+    let board = Array.from(
+        { length: n },
+        () => Array(n).fill(".")
+    );
+
+    function isSafe(row, col) {
+
+        // 1. Same column
+        for (let i = 0; i < row; i++) {
+            if (board[i][col] === "Q") {
+                return false;
+            }
+        }
+
+        // 2. Upper-left diagonal
+        for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] === "Q") {
+                return false;
+            }
+        }
+
+        // 3. Upper-right diagonal
+        for (let i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+            if (board[i][j] === "Q") {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    function backtrack(row) {
+
+        // All queens placed
+        if (row === n) {
+            ans.push(board.map(row => row.join("")));
+            return;
+        }
+
+        // Try every column
+        for (let col = 0; col < n; col++) {
+
+            if (isSafe(row, col)) {
+
+                // Place queen
+                board[row][col] = "Q";
+
+                // Go to next row
+                backtrack(row + 1);
+
+                // Remove queen
+                board[row][col] = ".";
+            }
+        }
+    }
+
+    backtrack(0);
+
+    return ans;
+}
+
 console.log(solveNQueens(4));
