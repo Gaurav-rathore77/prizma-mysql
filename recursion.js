@@ -148,4 +148,31 @@ function exist(board, word) {
     return false;
 }
 
+function generateParenthesis(n) {
+    const ans = [];
+
+    function backtrack(str, open, close) {
+
+        // Complete string
+        if (str.length === 2 * n) {
+            ans.push(str);
+            return;
+        }
+
+        // Add '('
+        if (open < n) {
+            backtrack(str + "(", open + 1, close);
+        }
+
+        // Add ')'
+        if (close < open) {
+            backtrack(str + ")", open, close + 1);
+        }
+    }
+
+    backtrack("", 0, 0);
+
+    return ans;
+}
+
 console.log(solveNQueens(4));
