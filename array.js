@@ -64,7 +64,7 @@ function productExceptSelf(nums) {
     for (let i = n - 1; i >= 0; i--) {
         result[i] *= rightProduct;
         rightProduct *= nums[i];
-    }
+    } 
 
     return result;
 }
