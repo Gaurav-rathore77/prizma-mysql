@@ -152,3 +152,26 @@ function spiralOrder(matrix) {
 
     return result;
 }
+
+function nextPermutation(nums) {
+    let i = nums.length - 2;
+
+    // Step 1: Find pivot
+    while (i >= 0 && nums[i] >= nums[i + 1]) {
+        i--;
+    }
+
+    // Step 2: Find next greater element and swap
+    if (i >= 0) {
+        let j = nums.length - 1;
+
+        while (nums[j] <= nums[i]) {
+            j--;
+        }
+
+        [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+
+    // Step 3: Reverse the suffix
+    reverse(nums, i + 1, nums.length - 1);
+}
