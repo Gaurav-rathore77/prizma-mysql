@@ -226,3 +226,35 @@ function binarySearch(arr, target) {
 
     return -1;
 }
+
+function countDistinct(arr, k) {
+    let map = new Map();
+    let ans = [];
+
+    // First window
+    for (let i = 0; i < k; i++) {
+        map.set(arr[i], (map.get(arr[i]) || 0) + 1);
+    }
+
+    ans.push(map.size);
+
+    // Remaining windows
+    for (let i = k; i < arr.length; i++) {
+
+        // Remove outgoing element
+        let out = arr[i - k];
+        map.set(out, map.get(out) - 1);
+
+        if (map.get(out) === 0) {
+            map.delete(out);
+        }
+
+        // Add incoming element
+        let inEle = arr[i];
+        map.set(inEle, (map.get(inEle) || 0) + 1);
+
+        ans.push(map.size);
+    }
+
+    return ans;
+}
