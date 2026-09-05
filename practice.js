@@ -277,3 +277,17 @@ function searchInsert(nums, target) {
 
     return left;
 }
+
+function largestNumber(nums) {
+    nums = nums.map(String);
+
+    nums.sort((a, b) => {
+        return (b + a).localeCompare(a + b);
+    });
+
+    if (nums[0] === "0") {
+        return "0";
+    }
+
+    return nums.join("");
+}
